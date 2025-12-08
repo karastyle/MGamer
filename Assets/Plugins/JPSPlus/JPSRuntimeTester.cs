@@ -1,6 +1,7 @@
 ﻿// 放置在 Assets/Scripts/JPSRuntimeTester.cs
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace JPSPlus
 {
@@ -57,9 +58,9 @@ public class JPSRuntimeTester : MonoBehaviour
     void Update()
     {
         // 1. 检查鼠标点击
-        if (Input.GetMouseButtonDown(0))
+        if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
         {
-            Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+            Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
             if (gridPlane.Raycast(ray, out float enter))
             {
                 // 设置目标点位置

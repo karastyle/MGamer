@@ -1,6 +1,7 @@
 ﻿// JPSPathfindingTester.cs
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.InputSystem;
 
 public class JPSPathfindingTester : MonoBehaviour
 {
@@ -28,9 +29,9 @@ public class JPSPathfindingTester : MonoBehaviour
         // 更新鼠标悬停的格子
         UpdateHoveredNode();
         
-        if (Input.GetMouseButtonDown(0))
+        if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
             Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
             
             if (groundPlane.Raycast(ray, out float distance))
@@ -55,7 +56,7 @@ public class JPSPathfindingTester : MonoBehaviour
     
     void UpdateHoveredNode()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
         Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
         
         if (groundPlane.Raycast(ray, out float distance))

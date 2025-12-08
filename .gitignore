@@ -84,9 +84,4 @@ crashlytics-build.properties
 /ProfileAnalyzer
 /Assets/StreamingAssets
 *.zip
-*.zip
-*.zip
-/Assets/StreamingAssets
-Assets/StreamingAssets/BundlePackTools.zip
-/Assets/StreamingAssets
 /WebServer

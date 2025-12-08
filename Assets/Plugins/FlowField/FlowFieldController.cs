@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.InputSystem;
 
 // UnityEditor 命名空间只在编辑器下使用，必须用 #if 包裹
 #if UNITY_EDITOR
@@ -136,10 +137,10 @@ public class FlowFieldController : MonoBehaviour
     #region 核心算法 (无改动)
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
         {
             if (Camera.main == null) return;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
             Plane groundPlane = new Plane(Vector3.up, transform.position);
 
             if (groundPlane.Raycast(ray, out float distance))
