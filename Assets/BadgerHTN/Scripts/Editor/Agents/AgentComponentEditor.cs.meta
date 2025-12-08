@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 58ead4c9c28b2214bb4d68914f93afe4
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Scripts/Editor/Agents/AgentComponentEditor.cs
+  uploadId: 622293

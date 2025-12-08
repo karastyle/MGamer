@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 3cb2cf706ef9d5648a5e41baa522b0da
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Examples/Zombies/Level/Guns/Pistol.prefab
+  uploadId: 622293

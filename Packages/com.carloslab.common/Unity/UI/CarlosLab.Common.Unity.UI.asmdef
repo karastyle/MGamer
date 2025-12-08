@@ -1,0 +1,14 @@
+{
+    "name": "CarlosLab.Common.Unity.UI",
+    "rootNamespace": "CarlosLab.Common.UI",
+    "references": ["GUID:c4eff121f208b494cb9c7b905d47c5e4","GUID:7e31a7743bc2120449d373c3779e8bc4"],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

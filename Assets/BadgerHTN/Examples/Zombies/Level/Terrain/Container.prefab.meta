@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 0ec9e87d4e1e64142b4fbcd9cc4a21a3
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Examples/Zombies/Level/Terrain/Container.prefab
+  uploadId: 622293

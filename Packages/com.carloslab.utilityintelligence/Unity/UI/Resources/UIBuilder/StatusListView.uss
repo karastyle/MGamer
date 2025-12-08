@@ -1,0 +1,60 @@
+.running.unity-list-view__item {
+    border-left-color: rgb(255, 255, 0);
+    border-right-color: rgb(255, 255, 0);
+    border-top-color: rgb(255, 255, 0);
+    border-bottom-color: rgb(255, 255, 0);
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-radius: 3px;
+    margin-bottom: 5px;
+}
+
+.success.unity-list-view__item {
+    border-left-color: rgb(0, 255, 0);
+    border-right-color: rgb(0, 255, 0);
+    border-top-color: rgb(0, 255, 0);
+    border-bottom-color: rgb(0, 255, 0);
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-radius: 3px;
+}
+
+.failure.unity-list-view__item {
+    border-left-color: rgb(255, 0, 0);
+    border-right-color: rgb(255, 0, 0);
+    border-top-color: rgb(255, 0, 0);
+    border-bottom-color: rgb(255, 0, 0);
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-radius: 3px;
+}
+
+.aborted.unity-list-view__item {
+    border-left-color: rgb(255, 165, 0);
+    border-right-color: rgb(255, 165, 0);
+    border-top-color: rgb(255, 165, 0);
+    border-bottom-color: rgb(255, 165, 0);
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-radius: 3px;
+}
+
+.winner.unity-list-view__item {
+    border-left-color: rgb(0, 255, 255);
+    border-right-color: rgb(0, 255, 255);
+    border-top-color: rgb(0, 255, 255);
+    border-bottom-color: rgb(0, 255, 255);
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-radius: 3px;
+}

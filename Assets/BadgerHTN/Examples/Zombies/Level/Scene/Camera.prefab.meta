@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 42859d92a98766c44b11d874ba35f8f2
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Examples/Zombies/Level/Scene/Camera.prefab
+  uploadId: 622293

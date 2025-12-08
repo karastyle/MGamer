@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 34a65708ee462e843b68f2dac0486dfe
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Examples/Zombies/Level/Guns/LICENSE.txt
+  uploadId: 622293

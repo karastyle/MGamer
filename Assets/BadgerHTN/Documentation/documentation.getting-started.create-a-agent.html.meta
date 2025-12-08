@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: dc30cfea1b390b8478b155a19183195e
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Documentation/documentation.getting-started.create-a-agent.html
+  uploadId: 622293

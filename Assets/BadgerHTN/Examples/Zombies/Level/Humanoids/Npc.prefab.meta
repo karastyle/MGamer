@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 4d6c2c6df793e1b4cae4378fd22ea00b
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Examples/Zombies/Level/Humanoids/Npc.prefab
+  uploadId: 622293

@@ -1,0 +1,21 @@
+{
+    "name": "CarlosLab.UtilityIntelligence.Unity.UI",
+    "rootNamespace": "CarlosLab.UtilityIntelligence.UI",
+    "references": [
+        "GUID:c4eff121f208b494cb9c7b905d47c5e4",
+        "GUID:7e31a7743bc2120449d373c3779e8bc4",
+        "GUID:f70273f96a45df84883cfc17d4e43d33",
+        "GUID:f189d7890ee623f46a641193451dc5e7",
+        "GUID:011ebf1acb974d2479a5a9e7d69500cb",
+        "GUID:2efc50daaaaa60246b008f3f8c0572f8"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

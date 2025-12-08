@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 2a6296c2de6f4ec1b038ed6bdf06d636
+timeCreated: 1670357033
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Scripts/Runtime/Agents/Agent.cs
+  uploadId: 622293

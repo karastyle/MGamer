@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 4c8af76b35837264fb54004c6fea45da
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Examples/Zombies/Level/Pickup/Pickup.prefab
+  uploadId: 622293

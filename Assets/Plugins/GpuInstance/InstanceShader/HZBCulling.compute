@@ -1,0 +1,183 @@
+#pragma kernel CullInstancesHZB
+#pragma kernel SetupIndirectArgs
+
+struct InstanceData
+{
+    float4x4 transformMatrix;
+    float4 boundsCenter;
+    float4 boundsExtents;
+};
+
+struct HZBDebugData
+{
+    uint instanceIndex;
+    uint mipLevel;
+};
+
+struct SegmentInfo
+{
+    int prototypeIndex;
+    int lodIndex;
+    int startIndex;
+    int instanceCount;
+};
+
+Texture2D<float> _HZBTexture;
+SamplerState sampler_HZBTexture;
+float4x4 _ViewProjectionMatrix;
+float4 _CameraWorldPos;
+float2 _HZBSize;
+uint _MaxMipLevel;
+int _UseReversedZ;
+float _OcclusionOffset;
+
+uint _InstanceCount;
+
+StructuredBuffer<uint> _InputCountBuffer;
+
+StructuredBuffer<InstanceData> _InstanceDataBuffer;
+StructuredBuffer<uint> _FrustumVisibleBuffer;
+AppendStructuredBuffer<uint> _HZBVisibleBuffer;
+RWStructuredBuffer<HZBDebugData> _HZBDebugBuffer;
+
+// 调试参数
+int _DebugEnabled;
+RWStructuredBuffer<uint> _DebugCounters; // [0]=总数, [1]=frustum后, [2]=HZB后
+
+// ✅ 全局优化新增
+StructuredBuffer<InstanceData> _GlobalInstanceDataBuffer;
+StructuredBuffer<uint> _GlobalFrustumVisibleBuffer;
+StructuredBuffer<uint> _GlobalFrustumCountBuffer;
+AppendStructuredBuffer<uint> _GlobalHZBVisibleBuffer;
+StructuredBuffer<SegmentInfo> _SegmentInfoBuffer;
+
+static const float3 BoundsCorners[8] =
+{
+    float3(-1, -1, -1), float3(-1, -1, 1),
+    float3(-1, 1, -1), float3(-1, 1, 1),
+    float3(1, -1, -1), float3(1, -1, 1),
+    float3(1, 1, -1), float3(1, 1, 1)
+};
+
+bool GetScreenSpaceAABB(float3 worldCenter, float3 worldExtents, out float4 aabb, out float minDepth)
+{
+    float2 minXY = float2(1e10, 1e10);
+    float2 maxXY = float2(-1e10, -1e10);
+    minDepth = _UseReversedZ ? 0.0 : 1.0;
+
+    bool hasValidPoint = false;
+    for (int i = 0; i < 8; i++)
+    {
+        float3 worldPos = worldCenter + worldExtents * BoundsCorners[i];
+        float4 clipPos = mul(_ViewProjectionMatrix, float4(worldPos, 1.0));
+
+        if (clipPos.w > 0.0001)
+        {
+            hasValidPoint = true;
+            float3 ndc = clipPos.xyz / clipPos.w;
+            float2 screenPos = ndc.xy * 0.5 + 0.5;
+
+            minXY = min(minXY, screenPos);
+            maxXY = max(maxXY, screenPos);
+
+            if (_UseReversedZ) minDepth = max(minDepth, ndc.z);
+            else minDepth = min(minDepth, ndc.z);
+        }
+    }
+
+    if (!hasValidPoint) return false;
+    minXY = saturate(minXY);
+    maxXY = saturate(maxXY);
+    if (maxXY.x <= minXY.x || maxXY.y <= minXY.y) return false;
+    aabb = float4(minXY, maxXY);
+    return true;
+}
+
+uint SelectMipLevel(float2 aabbSize)
+{
+    float2 pixelSize = aabbSize * _HZBSize;
+    float maxPixelSize = max(pixelSize.x, pixelSize.y);
+    float mipFloat = log2(maxPixelSize);
+    mipFloat = max(mipFloat, 0.0);
+    return (uint)clamp(floor(mipFloat), 0, _MaxMipLevel);
+}
+
+bool IsOccluded(float4 aabb, float minDepth, uint mipLevel, out float hzbDepthOut)
+{
+    float2 size = aabb.zw - aabb.xy;
+    float width = size.x;
+    float height = size.y;
+    float xShift = width / 4.0;
+    float yShift = height / 4.0;
+    
+    float2 samplePoints[4] = {
+        float2(aabb.x + xShift, aabb.y + yShift),
+        float2(aabb.z - xShift, aabb.y + yShift),
+        float2(aabb.x + xShift, aabb.w - yShift),
+        float2(aabb.z - xShift, aabb.w - yShift)
+    };
+
+    hzbDepthOut = _UseReversedZ ? 0.0 : 1.0;
+    
+    float depthBias = _UseReversedZ ? _OcclusionOffset : -_OcclusionOffset;
+    float testDepth = minDepth + depthBias;
+
+    for (int i = 0; i < 4; i++)
+    {
+        float2 uv = samplePoints[i];
+        float hzbDepth = _HZBTexture.SampleLevel(sampler_HZBTexture, uv, mipLevel).r;
+
+        if (_UseReversedZ) hzbDepthOut = max(hzbDepthOut, hzbDepth);
+        else hzbDepthOut = min(hzbDepthOut, hzbDepth);
+
+        bool isVisible = _UseReversedZ ? (testDepth >= hzbDepth) : (testDepth <= hzbDepth);
+        if (isVisible) return false;
+    }
+
+    return true;
+}
+
+// ✅ 原有kernel 1 - 保持完全不变
+[numthreads(64, 1, 1)]
+void CullInstancesHZB(uint3 id : SV_DispatchThreadID)
+{
+    uint activeCount = _InputCountBuffer[0];
+
+    if (id.x >= activeCount) return;
+    
+    uint originalIndex = _FrustumVisibleBuffer[id.x];
+    InstanceData data = _InstanceDataBuffer[originalIndex];
+
+    float3 worldCenter = data.boundsCenter.xyz;
+    float3 worldExtents = data.boundsExtents.xyz;
+
+    float4 screenAABB;
+    float minDepth;
+    if (!GetScreenSpaceAABB(worldCenter, worldExtents, screenAABB, minDepth)) return;
+
+    uint mipLevel = SelectMipLevel(screenAABB.zw - screenAABB.xy);
+    float hzbDepth;
+    
+    if (!IsOccluded(screenAABB, minDepth, mipLevel, hzbDepth))
+    {
+        if (_DebugEnabled == 1)
+        {
+            InterlockedAdd(_DebugCounters[2], 1);
+        }
+        _HZBVisibleBuffer.Append(originalIndex);
+    }
+}
+
+// ✅ 原有kernel 3 - 保持完全不变
+RWStructuredBuffer<uint> _IndirectArgsBuffer;
+StructuredBuffer<uint> _CountBuffer;
+
+[numthreads(1, 1, 1)]
+void SetupIndirectArgs(uint3 id : SV_DispatchThreadID)
+{
+    uint count = _CountBuffer[0];
+    
+    _IndirectArgsBuffer[0] = (count + 63) / 64; 
+    _IndirectArgsBuffer[1] = 1;
+    _IndirectArgsBuffer[2] = 1;
+}

@@ -1,0 +1,17 @@
+// <copyright file="Game.cs" company="CarlosLab">
+//     Copyright (c) CarlosLab. All rights reserved.
+//     https://carloslab-ai.com
+// </copyright>
+
+namespace CarlosLab.Common
+{
+    public interface IGame
+    {
+        bool IsPlaying { get; }
+    }
+
+    public partial class Game : Singleton<Game>, IGame
+    {
+
+    }
+}

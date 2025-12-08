@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: d78bba562dfb4a98b2d3277071cc3563
+timeCreated: 1667843342
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Examples/Zombies/Scripts/Humanoids/CharacterAnimation.cs
+  uploadId: 622293

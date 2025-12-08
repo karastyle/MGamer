@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <ui:VisualElement name="Container" style="border-top-width: 1px; border-top-color: rgb(149, 149, 149); margin-bottom: 10px; padding-top: 5px;">
+        <ui:VisualElement name="TypeFieldContainer" />
+        <ui:Button text="Create" display-tooltip-when-elided="true" name="CreateButton" />
+    </ui:VisualElement>
+</ui:UXML>

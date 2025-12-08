@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: b03e9d1e5bfa485e93ebf21595758495
+timeCreated: 1673267652
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Scripts/Editor/Sensors/AttributeSensorEditor.cs
+  uploadId: 622293

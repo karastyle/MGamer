@@ -1,0 +1,12 @@
+{
+    "layerIndex": 17,
+    "alignToGround": 0.0,
+    "renderMode": "VertexLit",
+    "minWidth": 1.0,
+    "maxWidth": 2.0,
+    "minHeight": 1.0,
+    "maxHeight": 2.0,
+    "noiseSpread": 0.10000000149011612,
+    "noiseSeed": 492732480.0,
+    "prototypeName": "Lupin2"
+}

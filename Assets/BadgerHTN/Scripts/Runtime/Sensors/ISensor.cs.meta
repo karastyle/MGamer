@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 8fdfbd7eed994374b169d22f52e12f97
+timeCreated: 1673285514
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Scripts/Runtime/Sensors/ISensor.cs
+  uploadId: 622293

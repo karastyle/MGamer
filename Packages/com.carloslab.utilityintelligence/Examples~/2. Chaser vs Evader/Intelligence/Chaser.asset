@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1eabfad2a45452ca2fe01e338896493, type: 3}
+  m_Name: Chaser
+  m_EditorClassIdentifier: 
+  dataVersion: 2
+  serializedModel: '{"$type":"CarlosLab.UtilityIntelligence.UtilityIntelligenceModel","DataVersion":2,"Blackboard":[{"$type":"CarlosLab.Common.AnimatorVariable","Value":null,"Category":null,"Name":"Animator","Id":"9569166d-2e1d-474b-a73d-fb12190c9e72"},{"$type":"CarlosLab.Common.NavMeshAgentVariable","Value":null,"Category":null,"Name":"NavMeshAgent","Id":"fb43dad6-987a-4cd3-b3f4-5e3ba5b54b32"}],"DecisionMakers":[{"$type":"CarlosLab.UtilityIntelligence.DecisionMakerModel","Decisions":["ChaseTarget"],"Name":"Chaser","Id":"1239fbcd-4255-4849-8681-757541ecf009"}],"Decisions":[{"$type":"CarlosLab.UtilityIntelligence.DecisionModel","Category":null,"Weight":1.0,"HasNoTarget":false,"EnableCachePerTarget":false,"KeepRunningUntilFinished":false,"MaxRepeatCount":1,"TargetFilters":["OtherTeamFilter"],"Actions":[{"$type":"CarlosLab.UtilityIntelligence.Lib.ChaseTarget","Id":"01a63816-0fe3-42c1-aeeb-5a899806740a","NavMeshAgent":{"$type":"CarlosLab.Common.VariableReference`1[UnityEngine.AI.NavMeshAgent]","Name":"NavMeshAgent","ReferenceType":1,"Value":null},"Speed":{"$type":"CarlosLab.Common.VariableReference`1[System.Single]","Name":null,"ReferenceType":0,"Value":3.0}},{"$type":"CarlosLab.UtilityIntelligence.Examples.UpdateSpeedForever","Id":"2d0e6599-1fb5-4faf-b0da-c2a0c4d1400c","Animator":{"$type":"CarlosLab.Common.VariableReference`1[UnityEngine.Animator]","Name":"Animator","ReferenceType":1,"Value":null},"ParamName":{"$type":"CarlosLab.Common.VariableReference`1[System.String]","Name":null,"ReferenceType":0,"Value":"Speed"},"NavMeshAgent":{"$type":"CarlosLab.Common.VariableReference`1[UnityEngine.AI.NavMeshAgent]","Name":"NavMeshAgent","ReferenceType":1,"Value":null}}],"ActionExecutionMode":2,"Considerations":[],"Name":"ChaseTarget","Id":"75cf945e-bdbe-4257-b7f5-da1a3a95e177"}],"TargetFilters":[{"$type":"CarlosLab.UtilityIntelligence.Examples.OtherTeamFilter","Id":"1d87b909-9687-41bd-ac21-f6678b9d9a64","Name":"OtherTeamFilter","Category":null}],"Considerations":[],"EnableCompensationFactor":true,"MomentumBonus":1.0,"Inputs":[],"InputNormalizations":[]}'
+  type: 
+  description: 

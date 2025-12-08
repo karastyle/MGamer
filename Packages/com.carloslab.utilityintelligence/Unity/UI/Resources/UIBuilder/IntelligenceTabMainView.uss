@@ -1,0 +1,3 @@
+.intelligence-field > .unity-label {
+    min-width: 145px;
+}

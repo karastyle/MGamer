@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: f5649d74b9c0414a8ad7fbffb205a265
+timeCreated: 1672675834
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Examples/Scripts/CustomNodes/DrinkCoffeeNode.cs
+  uploadId: 622293

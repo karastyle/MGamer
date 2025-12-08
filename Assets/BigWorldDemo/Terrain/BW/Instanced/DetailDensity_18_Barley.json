@@ -1,0 +1,12 @@
+{
+    "layerIndex": 18,
+    "alignToGround": 0.0,
+    "renderMode": "VertexLit",
+    "minWidth": 1.0,
+    "maxWidth": 2.0,
+    "minHeight": 1.0,
+    "maxHeight": 2.0,
+    "noiseSpread": 2.299999952316284,
+    "noiseSeed": 238809136.0,
+    "prototypeName": "Barley"
+}

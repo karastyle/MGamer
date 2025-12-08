@@ -1,0 +1,12 @@
+{
+    "layerIndex": 6,
+    "alignToGround": 1.0,
+    "renderMode": "VertexLit",
+    "minWidth": 2.0,
+    "maxWidth": 3.0,
+    "minHeight": 2.0,
+    "maxHeight": 3.0,
+    "noiseSpread": 4.71999979019165,
+    "noiseSeed": 1065767040.0,
+    "prototypeName": "Berries"
+}

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ff9b50c03034f428f4bc356d79fac45, type: 3}
+  m_Name: SceneChunkConfig
+  m_EditorClassIdentifier: 
+  baseNodeName: Base
+  staticNodeName: Static
+  terrainNodeName: Terrain
+  chunkSize: 100
+  showPreview: 1
+  loadRadius: 10
+  sceneRootPath: Assets/Plugins/Chunk/
+  lightingPrefabPath: GlobalLightingSettings.prefab
+  exportPath: ExportResult
+  globalLightingPrefab: {fileID: 3312024577360940330, guid: f7e30b7f50e613b48996ef0cf07865fe,
+    type: 3}

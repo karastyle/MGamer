@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f668a0b6fe22c0f439b4ab75071db321
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 4890085278179872738
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Examples/Zombies/Scenes/Lighting Settings.lighting
+  uploadId: 622293

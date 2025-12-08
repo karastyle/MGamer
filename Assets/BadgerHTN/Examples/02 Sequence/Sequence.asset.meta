@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 789d7038c7a626d48a33dec1fbfc648b
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Examples/02 Sequence/Sequence.asset
+  uploadId: 622293

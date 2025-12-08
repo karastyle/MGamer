@@ -1,0 +1,12 @@
+{
+    "layerIndex": 24,
+    "alignToGround": 0.4179999828338623,
+    "renderMode": "VertexLit",
+    "minWidth": 0.5,
+    "maxWidth": 1.0,
+    "minHeight": 0.5,
+    "maxHeight": 1.0,
+    "noiseSpread": 0.25,
+    "noiseSeed": 1487079552.0,
+    "prototypeName": "FlowerMeadow4"
+}

@@ -1,0 +1,12 @@
+{
+    "layerIndex": 9,
+    "alignToGround": 1.0,
+    "renderMode": "VertexLit",
+    "minWidth": 1.0,
+    "maxWidth": 3.0,
+    "minHeight": 1.0,
+    "maxHeight": 5.0,
+    "noiseSpread": 0.10000000149011612,
+    "noiseSeed": 1785592192.0,
+    "prototypeName": "CommonBlue"
+}

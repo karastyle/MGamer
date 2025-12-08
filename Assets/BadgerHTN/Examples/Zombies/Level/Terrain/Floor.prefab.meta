@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 77b6eaef68c3c9a44a0360155571f0f1
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Examples/Zombies/Level/Terrain/Floor.prefab
+  uploadId: 622293

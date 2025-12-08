@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 61df428a9baf467daf56b07c18232eae
+timeCreated: 1668248654
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Scripts/Runtime/Actors/Combating/PhysicsInfo.cs
+  uploadId: 622293

@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 1a22f48da6114e12a2bef66390f9b20a
+timeCreated: 1667889395
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Examples/Zombies/Scripts/Ui/HealthBar.cs
+  uploadId: 622293

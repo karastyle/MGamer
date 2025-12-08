@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 52ea4c846cd67bb4cbfd89c1de635d1e
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Documentation/documentation.guides.chasing-a-player.html
+  uploadId: 622293

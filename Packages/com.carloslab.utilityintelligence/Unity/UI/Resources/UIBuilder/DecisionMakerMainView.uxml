@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <ui:Label text="Decision Maker" name="TitleLabel" class="title-label" />
+    <ui:ScrollView name="Container" style="flex-grow: 1; margin-top: 5px;">
+        <ui:TextField label="Name" name="NameField" />
+        <CarlosLab.UtilityIntelligence.UI.DecisionContainerViewIntelligenceTab style="margin-top: 5px;" />
+    </ui:ScrollView>
+</ui:UXML>

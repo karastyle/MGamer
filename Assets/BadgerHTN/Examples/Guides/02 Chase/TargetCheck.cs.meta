@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 13647da091c260748b1c857d25d9d3b6
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Examples/Guides/02 Chase/TargetCheck.cs
+  uploadId: 622293

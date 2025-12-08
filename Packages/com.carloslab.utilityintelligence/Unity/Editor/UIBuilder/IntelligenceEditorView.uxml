@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <uie:Toolbar>
+        <uie:ToolbarMenu display-tooltip-when-elided="true" text="File" name="FileToolbarMenu" style="min-width: 60px;" />
+        <uie:ToolbarSpacer style="flex-grow: 1; display: flex;" />
+        <ui:Label name="DataVersionLabel" text="Data Version: 1" class="toolbar-label" style="padding-right: 5px; padding-left: 5px; padding-top: 1px; display: none;" />
+        <ui:Label name="FrameworkVersionLabel" text="Framework Version: 1.0.0" class="toolbar-label" style="padding-right: 5px; padding-left: 5px; padding-top: 1px; display: none;" />
+    </uie:Toolbar>
+</ui:UXML>

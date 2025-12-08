@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <ui:TabView style="flex-grow: 1;">
+        <ui:Tab label="Intelligence" name="IntelligenceTab" />
+        <ui:Tab label="Decisions" name="DecisionTab" />
+        <ui:Tab label="Target Filters" name="TargetFilterTab" />
+        <ui:Tab label="Considerations" name="ConsiderationTab" />
+        <ui:Tab label="Input Normalizations" name="InputNormalizationTab" />
+        <ui:Tab label="Inputs" name="InputTab" />
+        <ui:Tab label="Blackboard" name="BlackboardTab" />
+    </ui:TabView>
+</ui:UXML>

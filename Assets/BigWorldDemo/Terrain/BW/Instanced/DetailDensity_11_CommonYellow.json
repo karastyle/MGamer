@@ -1,0 +1,12 @@
+{
+    "layerIndex": 11,
+    "alignToGround": 1.0,
+    "renderMode": "VertexLit",
+    "minWidth": 1.0,
+    "maxWidth": 3.0,
+    "minHeight": 1.0,
+    "maxHeight": 5.0,
+    "noiseSpread": 1.6100000143051148,
+    "noiseSeed": 1424995200.0,
+    "prototypeName": "CommonYellow"
+}

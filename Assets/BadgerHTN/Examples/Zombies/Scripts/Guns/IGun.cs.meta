@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: bfcbe51127454903bc0612b231939d99
+timeCreated: 1668848638
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Examples/Zombies/Scripts/Guns/IGun.cs
+  uploadId: 622293

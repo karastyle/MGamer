@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: d11a955e50ed49c0a0ed9b59e4c5b280
+timeCreated: 1668818934
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Scripts/Runtime/Nodes/RotateToObjectNode.cs
+  uploadId: 622293

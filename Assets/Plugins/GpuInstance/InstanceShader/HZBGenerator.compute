@@ -1,0 +1,35 @@
+// HZBGenerator.compute - 生成层级深度图
+#pragma kernel BuildHZB
+
+Texture2D<float> _SourceDepth;
+RWTexture2D<float> _TargetMip;
+
+uint2 _SourceSize;
+uint2 _TargetSize;
+
+// 采样4个像素，取最远深度（Reversed-Z下是最小值）
+float GetMaxDepth(uint2 baseCoord)
+{
+    float d0 = _SourceDepth[baseCoord];
+    float d1 = _SourceDepth[baseCoord + uint2(1, 0)];
+    float d2 = _SourceDepth[baseCoord + uint2(0, 1)];
+    float d3 = _SourceDepth[baseCoord + uint2(1, 1)];
+    
+    return min(min(d0, d1), min(d2, d3));
+}
+
+[numthreads(8, 8, 1)]
+void BuildHZB(uint3 id : SV_DispatchThreadID)
+{
+    if (id.x >= _TargetSize.x || id.y >= _TargetSize.y)
+        return;
+    
+    uint2 sourceCoord = id.xy * 2;
+    
+    // 边界检查
+    if (sourceCoord.x < _SourceSize.x && sourceCoord.y < _SourceSize.y)
+    {
+        float maxDepth = GetMaxDepth(sourceCoord);
+        _TargetMip[id.xy] = maxDepth;
+    }
+}

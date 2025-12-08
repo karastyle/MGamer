@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d22a1f2b8a34f0e46a3628a71a68d333
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Examples/Zombies/Ai/Ally.asset
+  uploadId: 622293

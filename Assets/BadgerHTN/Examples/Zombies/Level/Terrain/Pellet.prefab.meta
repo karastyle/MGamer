@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: ea63932d2417298438a7b1a556ea0ada
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Examples/Zombies/Level/Terrain/Pellet.prefab
+  uploadId: 622293

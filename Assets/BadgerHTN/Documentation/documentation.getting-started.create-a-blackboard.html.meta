@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 91451ccc1d22e0a42b9c19a8cbf0c7db
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Documentation/documentation.getting-started.create-a-blackboard.html
+  uploadId: 622293

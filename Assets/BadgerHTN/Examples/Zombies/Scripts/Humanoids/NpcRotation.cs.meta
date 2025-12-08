@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: d9190bbaad5a4692ba54fc738a05b88e
+timeCreated: 1668112835
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Examples/Zombies/Scripts/Humanoids/NpcRotation.cs
+  uploadId: 622293

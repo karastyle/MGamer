@@ -1,0 +1,12 @@
+{
+    "layerIndex": 19,
+    "alignToGround": 0.35599997639656069,
+    "renderMode": "VertexLit",
+    "minWidth": 0.5,
+    "maxWidth": 2.0,
+    "minHeight": 0.5,
+    "maxHeight": 2.0,
+    "noiseSpread": 1.1200000047683716,
+    "noiseSeed": 1179405568.0,
+    "prototypeName": "Reeds"
+}

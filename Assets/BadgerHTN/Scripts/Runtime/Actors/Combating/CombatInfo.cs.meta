@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: bd8f5f430a4547aeb13a87b40446bf22
+timeCreated: 1668248565
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Scripts/Runtime/Actors/Combating/CombatInfo.cs
+  uploadId: 622293

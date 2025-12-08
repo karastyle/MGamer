@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 8131fb5c7b0de264a8c0f830ffdc8637
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 12385, guid: 0000000000000000e000000000000000, type: 0}
+  disableValidation: 0
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Resources/UiBuilder/Uss/TreeViewStyle.uss
+  uploadId: 622293

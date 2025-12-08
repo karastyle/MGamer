@@ -1,0 +1,26 @@
+{
+    "terrainPosition": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "terrainSize": {
+        "x": 1000.0,
+        "y": 600.0,
+        "z": 1000.0
+    },
+    "prototypes": [
+        {
+            "index": 0,
+            "prefabPath": "Assets/BK/PureNature_Meadows/Prefabs/Plants/Gorse1.prefab",
+            "densityMapPath": "DetailDensity_0_Gorse1.png",
+            "metadataPath": "DetailDensity_0_Gorse1.json"
+        },
+        {
+            "index": 1,
+            "prefabPath": "Assets/BK/PureNature_Meadows/Prefabs/Plants/GrassMeadows2.prefab",
+            "densityMapPath": "DetailDensity_1_GrassMeadows2.png",
+            "metadataPath": "DetailDensity_1_GrassMeadows2.json"
+        }
+    ]
+}

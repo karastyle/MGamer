@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: f6e43d8b55d569c4580034cca989faff
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Examples/Zombies/Level/Scene/CoverManager.prefab
+  uploadId: 622293

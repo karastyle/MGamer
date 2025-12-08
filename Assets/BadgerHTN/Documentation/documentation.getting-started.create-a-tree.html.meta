@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: a7f0c3dc65f8c894e86879279b194277
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Documentation/documentation.getting-started.create-a-tree.html
+  uploadId: 622293

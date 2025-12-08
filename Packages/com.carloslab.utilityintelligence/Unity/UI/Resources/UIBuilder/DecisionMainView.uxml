@@ -1,0 +1,13 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <ui:Label text="Decision" name="TitleLabel" class="title-label" />
+    <ui:ScrollView name="Container" style="flex-grow: 1; margin-top: 5px;">
+        <ui:TextField label="Name" name="NameField" />
+        <ui:TextField label="Category" name="CategoryField" />
+        <ui:FloatField label="Weight" value="42.2" name="WeightField" />
+        <ui:Toggle label="Has No Target" name="HasNoTargetToggle" />
+        <ui:Toggle label="Enable Cache Per Target" name="EnableCachePerTargetToggle" />
+        <CarlosLab.UtilityIntelligence.UI.TargetFilterContainerViewDecisionTab style="margin-top: 5px;" />
+        <CarlosLab.UtilityIntelligence.UI.ConsiderationContainerViewDecisionTab />
+        <CarlosLab.UtilityIntelligence.UI.ActionContainerViewDecisionTab style="margin-top: 5px;" />
+    </ui:ScrollView>
+</ui:UXML>

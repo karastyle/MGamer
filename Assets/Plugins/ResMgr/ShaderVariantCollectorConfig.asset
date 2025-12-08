@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b546145b18d94f05b459a60440c5bf51, type: 3}
+  m_Name: ShaderVariantCollectorConfig
+  m_EditorClassIdentifier: 
+  assetBundleConfig: {fileID: 11400000, guid: 6bf737a383de446429945ee3c9b5df87, type: 2}
+  savePath: Assets/Plugins/ResMgr/ShaderVariants/MyShaderVariants.shadervariants
+  processCapacity: 1000

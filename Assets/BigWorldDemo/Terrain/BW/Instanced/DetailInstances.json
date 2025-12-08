@@ -1,0 +1,188 @@
+{
+    "terrainPosition": {
+        "x": -500.0,
+        "y": 0.10000000149011612,
+        "z": -500.0
+    },
+    "terrainSize": {
+        "x": 1000.0,
+        "y": 300.0,
+        "z": 1000.0
+    },
+    "prototypes": [
+        {
+            "index": 0,
+            "prefabPath": "Assets/BK/PureNature_Meadows/Prefabs/Plants/Grass1.prefab",
+            "densityMapPath": "DetailDensity_0_Grass1.png",
+            "metadataPath": "DetailDensity_0_Grass1.json"
+        },
+        {
+            "index": 1,
+            "prefabPath": "Assets/BK/PureNature_Meadows/Prefabs/Plants/Grass2.prefab",
+            "densityMapPath": "DetailDensity_1_Grass2.png",
+            "metadataPath": "DetailDensity_1_Grass2.json"
+        },
+        {
+            "index": 2,
+            "prefabPath": "Assets/BK/PureNature_Meadows/Prefabs/Plants/Grass3.prefab",
+            "densityMapPath": "DetailDensity_2_Grass3.png",
+            "metadataPath": "DetailDensity_2_Grass3.json"
+        },
+        {
+            "index": 3,
+            "prefabPath": "Assets/BK/PureNature_Meadows/Prefabs/Plants/Grass4.prefab",
+            "densityMapPath": "DetailDensity_3_Grass4.png",
+            "metadataPath": "DetailDensity_3_Grass4.json"
+        },
+        {
+            "index": 4,
+            "prefabPath": "Assets/BK/PureNature_Meadows/Prefabs/Plants/Sorrel.prefab",
+            "densityMapPath": "DetailDensity_4_Sorrel.png",
+            "metadataPath": "DetailDensity_4_Sorrel.json"
+        },
+        {
+            "index": 5,
+            "prefabPath": "Assets/BK/PureNature_Meadows/Prefabs/Plants/Wheat.prefab",
+            "densityMapPath": "DetailDensity_5_Wheat.png",
+            "metadataPath": "DetailDensity_5_Wheat.json"
+        },
+        {
+            "index": 6,
+            "prefabPath": "Assets/BK/PureNature_Meadows/Prefabs/Plants/Berries.prefab",
+            "densityMapPath": "DetailDensity_6_Berries.png",
+            "metadataPath": "DetailDensity_6_Berries.json"
+        },
+        {
+            "index": 7,
+            "prefabPath": "Assets/BK/PureNature_Meadows/Prefabs/Plants/Carot1.prefab",
+            "densityMapPath": "DetailDensity_7_Carot1.png",
+            "metadataPath": "DetailDensity_7_Carot1.json"
+        },
+        {
+            "index": 8,
+            "prefabPath": "Assets/BK/PureNature_Meadows/Prefabs/Plants/Carot2.prefab",
+            "densityMapPath": "DetailDensity_8_Carot2.png",
+            "metadataPath": "DetailDensity_8_Carot2.json"
+        },
+        {
+            "index": 9,
+            "prefabPath": "Assets/BK/PureNature_Meadows/Prefabs/Plants/CommonBlue.prefab",
+            "densityMapPath": "DetailDensity_9_CommonBlue.png",
+            "metadataPath": "DetailDensity_9_CommonBlue.json"
+        },
+        {
+            "index": 10,
+            "prefabPath": "Assets/BK/PureNature_Meadows/Prefabs/Plants/CommonPink.prefab",
+            "densityMapPath": "DetailDensity_10_CommonPink.png",
+            "metadataPath": "DetailDensity_10_CommonPink.json"
+        },
+        {
+            "index": 11,
+            "prefabPath": "Assets/BK/PureNature_Meadows/Prefabs/Plants/CommonYellow.prefab",
+            "densityMapPath": "DetailDensity_11_CommonYellow.png",
+            "metadataPath": "DetailDensity_11_CommonYellow.json"
+        },
+        {
+            "index": 12,
+            "prefabPath": "Assets/BK/PureNature_Meadows/Prefabs/Plants/Daisy.prefab",
+            "densityMapPath": "DetailDensity_12_Daisy.png",
+            "metadataPath": "DetailDensity_12_Daisy.json"
+        },
+        {
+            "index": 13,
+            "prefabPath": "Assets/BK/PureNature_Meadows/Prefabs/Plants/Gorse1.prefab",
+            "densityMapPath": "DetailDensity_13_Gorse1.png",
+            "metadataPath": "DetailDensity_13_Gorse1.json"
+        },
+        {
+            "index": 14,
+            "prefabPath": "Assets/BK/PureNature_Meadows/Prefabs/Plants/Gorse2.prefab",
+            "densityMapPath": "DetailDensity_14_Gorse2.png",
+            "metadataPath": "DetailDensity_14_Gorse2.json"
+        },
+        {
+            "index": 15,
+            "prefabPath": "Assets/BK/PureNature_Meadows/Prefabs/Plants/Lavender.prefab",
+            "densityMapPath": "DetailDensity_15_Lavender.png",
+            "metadataPath": "DetailDensity_15_Lavender.json"
+        },
+        {
+            "index": 16,
+            "prefabPath": "Assets/BK/PureNature_Meadows/Prefabs/Plants/Lupin1.prefab",
+            "densityMapPath": "DetailDensity_16_Lupin1.png",
+            "metadataPath": "DetailDensity_16_Lupin1.json"
+        },
+        {
+            "index": 17,
+            "prefabPath": "Assets/BK/PureNature_Meadows/Prefabs/Plants/Lupin2.prefab",
+            "densityMapPath": "DetailDensity_17_Lupin2.png",
+            "metadataPath": "DetailDensity_17_Lupin2.json"
+        },
+        {
+            "index": 18,
+            "prefabPath": "Assets/BK/PureNature_Meadows/Prefabs/Plants/Barley.prefab",
+            "densityMapPath": "DetailDensity_18_Barley.png",
+            "metadataPath": "DetailDensity_18_Barley.json"
+        },
+        {
+            "index": 19,
+            "prefabPath": "Assets/BK/PureNature_Meadows/Prefabs/Plants/Reeds.prefab",
+            "densityMapPath": "DetailDensity_19_Reeds.png",
+            "metadataPath": "DetailDensity_19_Reeds.json"
+        },
+        {
+            "index": 20,
+            "prefabPath": "Assets/BK/PureNature_Meadows/Prefabs/Plants/Grass1.prefab",
+            "densityMapPath": "DetailDensity_20_Grass1.png",
+            "metadataPath": "DetailDensity_20_Grass1.json"
+        },
+        {
+            "index": 21,
+            "prefabPath": "Assets/BK/PureNature_Meadows/Prefabs/Plants/FlowerMeadow1.prefab",
+            "densityMapPath": "DetailDensity_21_FlowerMeadow1.png",
+            "metadataPath": "DetailDensity_21_FlowerMeadow1.json"
+        },
+        {
+            "index": 22,
+            "prefabPath": "Assets/BK/PureNature_Meadows/Prefabs/Plants/FlowerMeadow2.prefab",
+            "densityMapPath": "DetailDensity_22_FlowerMeadow2.png",
+            "metadataPath": "DetailDensity_22_FlowerMeadow2.json"
+        },
+        {
+            "index": 23,
+            "prefabPath": "Assets/BK/PureNature_Meadows/Prefabs/Plants/FlowerMeadow3.prefab",
+            "densityMapPath": "DetailDensity_23_FlowerMeadow3.png",
+            "metadataPath": "DetailDensity_23_FlowerMeadow3.json"
+        },
+        {
+            "index": 24,
+            "prefabPath": "Assets/BK/PureNature_Meadows/Prefabs/Plants/FlowerMeadow4.prefab",
+            "densityMapPath": "DetailDensity_24_FlowerMeadow4.png",
+            "metadataPath": "DetailDensity_24_FlowerMeadow4.json"
+        },
+        {
+            "index": 25,
+            "prefabPath": "Assets/BK/PureNature_Meadows/Prefabs/Plants/GrassMeadows4.prefab",
+            "densityMapPath": "DetailDensity_25_GrassMeadows4.png",
+            "metadataPath": "DetailDensity_25_GrassMeadows4.json"
+        },
+        {
+            "index": 26,
+            "prefabPath": "Assets/BK/PureNature_Meadows/Prefabs/Plants/GrassMeadows2.prefab",
+            "densityMapPath": "DetailDensity_26_GrassMeadows2.png",
+            "metadataPath": "DetailDensity_26_GrassMeadows2.json"
+        },
+        {
+            "index": 27,
+            "prefabPath": "Assets/BK/PureNature_Meadows/Prefabs/Plants/GrassMeadows3.prefab",
+            "densityMapPath": "DetailDensity_27_GrassMeadows3.png",
+            "metadataPath": "DetailDensity_27_GrassMeadows3.json"
+        },
+        {
+            "index": 28,
+            "prefabPath": "Assets/BK/PureNature_Meadows/Prefabs/Plants/GrassMeadows4.prefab",
+            "densityMapPath": "DetailDensity_28_GrassMeadows4.png",
+            "metadataPath": "DetailDensity_28_GrassMeadows4.json"
+        }
+    ]
+}

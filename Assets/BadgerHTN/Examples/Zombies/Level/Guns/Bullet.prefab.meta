@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: d02f2ac83d1453442ae8d16a6266cb58
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Examples/Zombies/Level/Guns/Bullet.prefab
+  uploadId: 622293

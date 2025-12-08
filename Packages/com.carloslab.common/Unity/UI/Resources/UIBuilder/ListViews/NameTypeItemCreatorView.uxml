@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <ui:VisualElement name="Container" style="border-top-width: 1px; border-top-color: rgb(149, 149, 149); min-height: 80px; margin-top: 10px; padding-top: 5px;">
+        <ui:TextField picking-mode="Ignore" label="Name" name="NameField" />
+        <ui:VisualElement name="TypeFieldContainer" />
+        <ui:Button text="Create" display-tooltip-when-elided="true" name="CreateButton" />
+    </ui:VisualElement>
+</ui:UXML>

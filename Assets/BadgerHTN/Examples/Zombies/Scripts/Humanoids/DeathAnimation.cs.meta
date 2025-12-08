@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: f468030682404086827776ad7bbcd335
+timeCreated: 1668255134
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Examples/Zombies/Scripts/Humanoids/DeathAnimation.cs
+  uploadId: 622293

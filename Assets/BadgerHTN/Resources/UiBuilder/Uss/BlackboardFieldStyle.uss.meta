@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 20390f1810a1a35488080c322ed766fc
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 12385, guid: 0000000000000000e000000000000000, type: 0}
+  disableValidation: 0
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Resources/UiBuilder/Uss/BlackboardFieldStyle.uss
+  uploadId: 622293

@@ -1,0 +1,6 @@
+.remove-button {
+    width: 18px;
+    height: 18px;
+    -unity-background-scale-mode: scale-to-fit;
+    background-image: url('project://database/Packages/com.carloslab.common/Unity/UI/Icons/RemoveButton_Dark.png?fileID=2800000&guid=b2616b800c21d9b48a9fd1f5610980e4&type=3#RemoveButton_Dark');
+}

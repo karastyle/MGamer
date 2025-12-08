@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 53c46a600358daa42b18d77086063f9a
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Documentation/documentation.guides.creating-custom-context-and-nodes.html
+  uploadId: 622293

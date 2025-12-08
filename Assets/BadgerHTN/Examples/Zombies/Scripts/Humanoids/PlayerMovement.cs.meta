@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 5e2720e55e514e9aafb8e439f0fd7951
+timeCreated: 1667838302
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Examples/Zombies/Scripts/Humanoids/PlayerMovement.cs
+  uploadId: 622293

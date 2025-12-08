@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 57b392f48feb4338b9c9d6d959af2e79
+timeCreated: 1672675834
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Examples/Scripts/CustomNodes/MakeCoffeeNode.cs
+  uploadId: 622293

@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <Style src="project://database/Packages/com.carloslab.utilityintelligence/Unity/UI/Resources/UIBuilder/IntelligenceTabMainView.uss?fileID=7433441132597879392&amp;guid=a7a27552e6c68514eaaeab6c3592272d&amp;type=3#IntelligenceTabMainView" />
+    <ui:Label text="Intelligence" name="TitleLabel" class="title-label" />
+    <ui:ScrollView name="Container" style="flex-grow: 1; margin-top: 5px;">
+        <ui:TextField label="Name" name="NameField" class="intelligence-field" />
+        <ui:Toggle label="Compensation Factor" name="CompensationFactorToggle" tooltip="Enable/Disable Compensation Factor" class="intelligence-field" />
+        <ui:FloatField label="Momentum Bonus" value="1" name="MomentumBonusField" class="intelligence-field" />
+        <CarlosLab.UtilityIntelligence.UI.DecisionMakerContainerView style="margin-top: 5px;" />
+    </ui:ScrollView>
+</ui:UXML>

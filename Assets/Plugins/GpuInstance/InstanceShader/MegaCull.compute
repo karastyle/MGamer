@@ -1,0 +1,285 @@
+// MegaCull.compute
+// GPU Driven Pipeline: Frustum + LOD + HZB 合并在1个Mega Kernel
+// 使用Segmented Big Buffer + InterlockedAdd原子操作
+
+#pragma kernel ClearArgCounters
+#pragma kernel MegaCullKernel
+#pragma kernel PropagateSubmeshCounts
+
+// ===== 数据结构 =====
+
+struct InstanceData
+{
+    float4x4 transformMatrix;
+    float4 boundsCenter;
+    float4 boundsExtents;
+    uint prototypeID;
+    uint padding1;
+    uint padding2;
+    uint padding3;
+};
+
+struct SegmentInfo
+{
+    uint indexOffset;
+    uint argsOffset;
+    uint maxCapacity;
+    uint prototypeIndex;
+    uint lodIndex;
+    uint subMeshCount;
+    uint triCount;
+    uint vertCount;
+};
+
+// ===== 全局参数 =====
+uint _TotalDrawCalls;
+StructuredBuffer<int> _SegmentLookup;
+
+// 输入
+StructuredBuffer<InstanceData> _GlobalInstances;
+StructuredBuffer<SegmentInfo> _SegmentInfo;
+
+float4 _FrustumPlanes[6];
+float3 _CameraPos;
+uint _TotalInstanceCount;
+uint _TotalSegments;
+
+// HZB参数
+int _UseHZB;
+Texture2D<float> _HZBTexture;
+SamplerState sampler_HZBTexture;
+float4x4 _ViewProjectionMatrix;
+float2 _HZBSize;
+uint _MaxMipLevel;
+int _UseReversedZ;
+
+// 输出
+RWStructuredBuffer<uint> _GlobalVisibleIndices;
+RWStructuredBuffer<uint> _GlobalArgs;
+
+// 调试参数
+int _DebugEnabled;
+RWStructuredBuffer<uint> _DebugCounters; // [0]=总数, [1]=视锥后, [2]=LOD后, [3]=HZB后(最终), [4]=最终tris, [5]=最终verts
+
+// ===== LOD距离配置 =====
+static const float LOD_DISTANCES[3] = {30, 120, 600};
+
+// ===== 辅助函数 =====
+
+static const float3 BoundsCorners[8] =
+{
+    float3(-1, -1, -1), float3(-1, -1, 1),
+    float3(-1, 1, -1), float3(-1, 1, 1),
+    float3(1, -1, -1), float3(1, -1, 1),
+    float3(1, 1, -1), float3(1, 1, 1)
+};
+
+bool IsInFrustum(float3 center, float3 extents)
+{
+    for (int i = 0; i < 6; i++)
+    {
+        float3 normal = _FrustumPlanes[i].xyz;
+        float distance = _FrustumPlanes[i].w;
+
+        float3 absNormal = abs(normal);
+        float r = dot(extents, absNormal);
+        float d = dot(normal, center) + distance;
+
+        if (d + r < 0)
+            return false;
+    }
+    return true;
+}
+
+int CalculateLOD(float3 instancePos, uint prototypeID)
+{
+    float dist = length(instancePos - _CameraPos);
+
+    if (dist < LOD_DISTANCES[0]) return 1;
+    if (dist < LOD_DISTANCES[1]) return 2;
+    if (dist < LOD_DISTANCES[2]) return 3;
+    return -1;
+}
+
+bool GetScreenSpaceAABB(float3 worldCenter, float3 worldExtents, out float4 aabb, out float minDepth)
+{
+    float2 minXY = float2(1e10, 1e10);
+    float2 maxXY = float2(-1e10, -1e10);
+    minDepth = _UseReversedZ ? 0.0 : 1.0;
+
+    bool hasValidPoint = false;
+    for (int i = 0; i < 8; i++)
+    {
+        float3 worldPos = worldCenter + worldExtents * BoundsCorners[i];
+        float4 clipPos = mul(_ViewProjectionMatrix, float4(worldPos, 1.0));
+
+        if (clipPos.w > 0.0001)
+        {
+            hasValidPoint = true;
+            float3 ndc = clipPos.xyz / clipPos.w;
+            float2 screenPos = ndc.xy * 0.5 + 0.5;
+
+            minXY = min(minXY, screenPos);
+            maxXY = max(maxXY, screenPos);
+
+            if (_UseReversedZ) minDepth = max(minDepth, ndc.z);
+            else minDepth = min(minDepth, ndc.z);
+        }
+    }
+
+    if (!hasValidPoint) return false;
+    minXY = saturate(minXY);
+    maxXY = saturate(maxXY);
+    if (maxXY.x <= minXY.x || maxXY.y <= minXY.y) return false;
+    aabb = float4(minXY, maxXY);
+    return true;
+}
+
+uint SelectMipLevel(float2 aabbSize)
+{
+    float2 pixelSize = aabbSize * _HZBSize;
+    float maxPixelSize = max(pixelSize.x, pixelSize.y);
+    float mipFloat = log2(maxPixelSize);
+    mipFloat = max(mipFloat, 0.0);
+    return (uint)clamp(floor(mipFloat), 0, _MaxMipLevel);
+}
+
+bool IsOccluded(float4 aabb, float minDepth, uint mipLevel)
+{
+    float2 size = aabb.zw - aabb.xy;
+    float xShift = size.x / 4.0;
+    float yShift = size.y / 4.0;
+
+    float2 samplePoints[4] = {
+        float2(aabb.x + xShift, aabb.y + yShift),
+        float2(aabb.z - xShift, aabb.y + yShift),
+        float2(aabb.x + xShift, aabb.w - yShift),
+        float2(aabb.z - xShift, aabb.w - yShift)
+    };
+
+    for (int i = 0; i < 4; i++)
+    {
+        float2 uv = samplePoints[i];
+        float hzbDepth = _HZBTexture.SampleLevel(sampler_HZBTexture, uv, mipLevel).r;
+
+        bool isVisible = _UseReversedZ ? (minDepth >= hzbDepth) : (minDepth <= hzbDepth);
+        if (isVisible) return false;
+    }
+
+    return true;
+}
+
+// ===== Kernel 1: 重置Args Buffer =====
+[numthreads(64, 1, 1)]
+void ClearArgCounters(uint3 id : SV_DispatchThreadID)
+{
+    if (id.x >= _TotalDrawCalls)
+        return;
+
+    uint index = id.x * 5 + 1;
+    _GlobalArgs[index] = 0;
+}
+
+// ===== Kernel 2: Mega Cull Kernel =====
+[numthreads(64, 1, 1)]
+void MegaCullKernel(uint3 id : SV_DispatchThreadID)
+{
+    uint instanceID = id.x;
+    if (instanceID >= _TotalInstanceCount)
+        return;
+
+    if (_DebugEnabled == 1)
+    {
+        InterlockedAdd(_DebugCounters[0], 1);
+    }
+
+    InstanceData data = _GlobalInstances[instanceID];
+
+    float3 worldCenter = data.boundsCenter.xyz;
+    float3 worldExtents = data.boundsExtents.xyz;
+    float3 instancePos = data.transformMatrix._m03_m13_m23;
+    uint prototypeID = data.prototypeID;
+
+    // ===== 阶段1：Frustum剔除 =====
+    if (!IsInFrustum(worldCenter, worldExtents))
+        return;
+
+    if (_DebugEnabled == 1)
+    {
+        InterlockedAdd(_DebugCounters[1], 1);
+    }
+
+    // ===== 阶段2：计算LOD级别 =====
+    int lodLevel = CalculateLOD(instancePos, prototypeID);
+    if (lodLevel == -1)
+        return;
+
+    if (_DebugEnabled == 1)
+    {
+        InterlockedAdd(_DebugCounters[2], 1);
+    }
+
+    // ===== 阶段3：HZB剔除 =====
+    if (_UseHZB == 1)
+    {
+        float4 screenAABB;
+        float minDepth;
+        if (!GetScreenSpaceAABB(worldCenter, worldExtents, screenAABB, minDepth))
+            return;
+
+        uint mipLevel = SelectMipLevel(screenAABB.zw - screenAABB.xy);
+
+        if (IsOccluded(screenAABB, minDepth, mipLevel))
+            return;
+    }
+
+    if (_DebugEnabled == 1)
+    {
+        InterlockedAdd(_DebugCounters[3], 1);
+    }
+
+    // ===== 阶段4：分发到Segment =====
+    uint lookupKey = prototypeID * 3 + (uint)lodLevel;
+    int segmentID = _SegmentLookup[lookupKey];
+
+    if (segmentID == -1)
+        return;
+
+    SegmentInfo seg = _SegmentInfo[segmentID];
+
+    // 统计tris和verts（放在获取seg之后）
+    if (_DebugEnabled == 1)
+    {
+        InterlockedAdd(_DebugCounters[4], seg.triCount);
+        InterlockedAdd(_DebugCounters[5], seg.vertCount);
+    }
+
+    uint writePos = 0;
+    InterlockedAdd(_GlobalArgs[seg.argsOffset + 1], 1, writePos);
+
+    if (writePos < seg.maxCapacity)
+    {
+        uint globalWritePos = seg.indexOffset + writePos;
+        _GlobalVisibleIndices[globalWritePos] = instanceID;
+    }
+}
+
+// ===== Kernel 3: 同步 Submesh 计数器 =====
+[numthreads(64, 1, 1)]
+void PropagateSubmeshCounts(uint3 id : SV_DispatchThreadID)
+{
+    if (id.x >= _TotalSegments) return;
+
+    SegmentInfo seg = _SegmentInfo[id.x];
+
+    if (seg.subMeshCount <= 1) return;
+
+    uint masterCountIndex = seg.argsOffset + 1;
+    uint instanceCount = _GlobalArgs[masterCountIndex];
+
+    for (uint i = 1; i < seg.subMeshCount; i++)
+    {
+        uint targetIndex = seg.argsOffset + (i * 5) + 1;
+        _GlobalArgs[targetIndex] = instanceCount;
+    }
+}

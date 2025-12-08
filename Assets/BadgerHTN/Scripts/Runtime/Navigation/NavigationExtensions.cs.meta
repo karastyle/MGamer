@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: dee099900cfd412ab2ef6f043a4ea46f
+timeCreated: 1670442653
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Scripts/Runtime/Navigation/NavigationExtensions.cs
+  uploadId: 622293

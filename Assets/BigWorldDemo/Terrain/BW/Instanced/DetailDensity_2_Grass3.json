@@ -1,0 +1,12 @@
+{
+    "layerIndex": 2,
+    "alignToGround": 1.0,
+    "renderMode": "VertexLit",
+    "minWidth": 0.5,
+    "maxWidth": 2.0,
+    "minHeight": 0.5,
+    "maxHeight": 2.0,
+    "noiseSpread": 0.8899999856948853,
+    "noiseSeed": 1368949248.0,
+    "prototypeName": "Grass3"
+}

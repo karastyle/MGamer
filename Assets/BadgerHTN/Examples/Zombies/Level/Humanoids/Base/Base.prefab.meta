@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 9ba0636ab2cdde1408e04e2016b592b0
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Examples/Zombies/Level/Humanoids/Base/Base.prefab
+  uploadId: 622293

@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 9407f5d62fd14c0b9fd6bdc3d0d872ed
+timeCreated: 1667842443
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Examples/Zombies/Scripts/Inputs/BufferExtensions.cs
+  uploadId: 622293

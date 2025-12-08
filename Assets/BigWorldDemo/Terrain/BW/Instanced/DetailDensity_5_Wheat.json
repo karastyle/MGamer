@@ -1,0 +1,12 @@
+{
+    "layerIndex": 5,
+    "alignToGround": 1.0,
+    "renderMode": "VertexLit",
+    "minWidth": 0.699999988079071,
+    "maxWidth": 1.5,
+    "minHeight": 0.699999988079071,
+    "maxHeight": 1.5,
+    "noiseSpread": 1.0,
+    "noiseSeed": 1778377344.0,
+    "prototypeName": "Wheat"
+}

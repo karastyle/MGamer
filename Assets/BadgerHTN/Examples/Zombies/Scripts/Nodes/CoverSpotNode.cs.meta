@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: 4b3c8e51c06c4d4fb6de419ed348cd87
+timeCreated: 1668599735
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Examples/Zombies/Scripts/Nodes/CoverSpotNode.cs
+  uploadId: 622293

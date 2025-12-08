@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 40ea06adb42b70347be14c6782bd1208
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/package.json
+  uploadId: 622293

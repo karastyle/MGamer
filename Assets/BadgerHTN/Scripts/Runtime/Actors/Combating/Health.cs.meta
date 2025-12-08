@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 07346a66baa1400eac1acd555287c425
+timeCreated: 1668247910
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Scripts/Runtime/Actors/Combating/Health.cs
+  uploadId: 622293

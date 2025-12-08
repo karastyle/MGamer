@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <ui:Label text="Consideration" name="TitleLabel" class="title-label" />
+    <ui:ScrollView name="Container" style="flex-grow: 1; margin-top: 5px;">
+        <ui:TextField label="Name" name="NameField" />
+    </ui:ScrollView>
+</ui:UXML>

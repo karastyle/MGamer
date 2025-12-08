@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: ad08c04fd9234d728bf491a2e4b55a88
+timeCreated: 1667838931
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Examples/Zombies/Scripts/Cameras/CameraMovement.cs
+  uploadId: 622293

@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Terrain_0_1_37c841e8-893d-4936-9da3-3819cf484642_Atlasmap
+  m_Shader: {fileID: 4800000, guid: 5f2336233ef3a8241a5d69d91ebf42d6, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlbedoAtlas:
+        m_Texture: {fileID: 2800000, guid: 4db03998d959d164ab40f54f3f1971e0, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BlendMap:
+        m_Texture: {fileID: 2800000, guid: c6433640bfbe2484aabaa521dac7ebe8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _IndexMap:
+        m_Texture: {fileID: 2800000, guid: 71a18d6d0192b494c91aa9c5de70d9bd, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalAtlas:
+        m_Texture: {fileID: 2800000, guid: 9b7b5b47096039740946e88322ce9223, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _AtlasPadding: 2
+    - _AtlasResolution: 2048
+    - _TileSize: 512
+    m_Colors:
+    - _AtlasUVScaleOffset: {r: 5.12, g: 5.12, b: 0, a: 0}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1

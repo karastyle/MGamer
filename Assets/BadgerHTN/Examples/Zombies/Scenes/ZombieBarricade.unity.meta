@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: d4e6499e135abba4e91b9b348215ccd8
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Examples/Zombies/Scenes/ZombieBarricade.unity
+  uploadId: 622293

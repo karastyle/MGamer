@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f42972862a3634f488b1335fa2cd904b
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Examples/Zombies/Ai/Blackboard_Zombies.asset
+  uploadId: 622293

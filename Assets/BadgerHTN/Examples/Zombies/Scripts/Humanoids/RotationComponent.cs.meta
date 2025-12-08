@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: bf093507913b40a1a65513b737131e5c
+timeCreated: 1674076970
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Examples/Zombies/Scripts/Humanoids/RotationComponent.cs
+  uploadId: 622293

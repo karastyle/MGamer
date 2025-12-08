@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 7d85adb8a41d58647bd995d5d7ce32ce
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 13804, guid: 0000000000000000e000000000000000, type: 0}
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Resources/UiBuilder/Xml/GlobalBlackboard.uxml
+  uploadId: 622293

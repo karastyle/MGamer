@@ -1,0 +1,5 @@
+
+.toolbar-label {
+    border-left-color: rgb(35, 35, 35);
+    border-left-width: 1px;
+}

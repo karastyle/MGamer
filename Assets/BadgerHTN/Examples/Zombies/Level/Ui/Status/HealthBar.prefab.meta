@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: c8b0d860782739a4290a337db9123a57
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Examples/Zombies/Level/Ui/Status/HealthBar.prefab
+  uploadId: 622293

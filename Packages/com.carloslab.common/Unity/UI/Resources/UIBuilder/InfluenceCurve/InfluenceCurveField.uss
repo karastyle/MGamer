@@ -1,0 +1,7 @@
+.unity-base-field__label {
+    min-width: 70px;
+}
+
+.unity-base-field__input {
+    min-width: 120px;
+}

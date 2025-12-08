@@ -1,0 +1,17 @@
+{
+  "name": "com.carloslab.common",
+  "version": "2.2.9",
+  "displayName": "CarlosLab - Common",
+  "description": "Common library used in all plugins from CarlosLab.",
+  "licensesUrl": "https://unity.com/legal/as-terms",
+  "type": "library",
+  "unity": "6000.0",
+  "author": {
+    "name": "Carlos Lab",
+    "email": "support@carloslab-ai.com",
+    "url": "https://carloslab-ai.com/"
+  },
+  "dependencies": {
+    "com.unity.nuget.newtonsoft-json": "3.2.1"
+  }
+}

@@ -1,0 +1,6 @@
+<linker>
+    <assembly fullname="UnityEngine">
+        <type fullname="UnityEngine.TerrainCollider" preserve="all"/>
+        <type fullname="UnityEngine.TerrainLayer" preserve="all"/>
+    </assembly>
+</linker>

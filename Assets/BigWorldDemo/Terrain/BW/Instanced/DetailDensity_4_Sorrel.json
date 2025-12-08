@@ -1,0 +1,12 @@
+{
+    "layerIndex": 4,
+    "alignToGround": 1.0,
+    "renderMode": "VertexLit",
+    "minWidth": 1.0,
+    "maxWidth": 3.0,
+    "minHeight": 1.0,
+    "maxHeight": 4.0,
+    "noiseSpread": 0.03999999910593033,
+    "noiseSeed": 2121721728.0,
+    "prototypeName": "Sorrel"
+}

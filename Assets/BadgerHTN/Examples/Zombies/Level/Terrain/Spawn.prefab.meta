@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 7c24661e07a223c4c9add401ae0856a7
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Examples/Zombies/Level/Terrain/Spawn.prefab
+  uploadId: 622293

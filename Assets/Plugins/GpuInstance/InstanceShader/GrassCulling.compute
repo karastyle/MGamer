@@ -1,0 +1,120 @@
+// GrassCulling.compute
+#pragma kernel CSCullInstances
+
+struct InstanceData
+{
+    float4x4 transformMatrix;
+    float4 boundsCenter;
+    float4 boundsExtents;
+};
+
+// 视锥体平面
+float4 _FrustumPlanes[6];
+uint _InstanceCount;
+
+// 相机位置和距离控制参数
+float3 _CameraPos;
+float _MaxDistance;      
+float _FadeStartDistance;
+
+StructuredBuffer<InstanceData> _InstanceDataBuffer;
+AppendStructuredBuffer<uint> _VisibleInstancesBuffer;
+
+// 调试参数
+int _DebugEnabled;
+RWStructuredBuffer<uint> _DebugCounters; // [0]=总数, [1]=frustum后
+
+// 简单的随机函数
+float GetRandom(float2 p)
+{
+    return frac(sin(dot(p, float2(12.9898, 78.233))) * 43758.5453);
+}
+
+// 视锥体平面测试
+// 优化：传入中心和半径，减少重复计算
+bool IsInFrustum(float3 center, float3 extents)
+{
+    // 循环展开有助于 GPU 指令流水线，但现代编译器通常会自动处理
+    // 关键是尽早退出
+    for (int i = 0; i < 6; i++)
+    {
+        float4 plane = _FrustumPlanes[i];
+        float3 normal = plane.xyz;
+        float dist = plane.w;
+        
+        // 计算投影半径 (dot(abs(normal), extents))
+        // 这一步虽然有 abs，但比矩阵乘法便宜得多
+        float radius = dot(extents, abs(normal));
+        
+        // 点到平面的距离
+        float d = dot(normal, center) + dist;
+        
+        // 如果中心点距离平面的距离 < -radius，说明完全在平面外侧
+        if (d < -radius) return false;
+    }
+    return true;
+}
+
+[numthreads(64, 1, 1)]
+void CSCullInstances(uint3 id : SV_DispatchThreadID)
+{
+    if (id.x >= _InstanceCount) return;
+
+    if (_DebugEnabled == 1)
+    {
+        InterlockedAdd(_DebugCounters[0], 1);
+    }
+
+    // 只读取 Center 和 Extents (32 bytes)，不读取 Matrix (64 bytes)
+    // 这样可以减少 2/3 的显存带宽占用
+    InstanceData data = _InstanceDataBuffer[id.x];
+    float3 worldCenter = data.boundsCenter.xyz;
+    float3 worldExtents = data.boundsExtents.xyz;
+
+    // --------------------------------------------------------
+    // 优化 1：先做距离剔除 (Distance Culling)
+    // --------------------------------------------------------
+    // 距离剔除只是一个简单的球体检测，比视锥剔除（6个平面）便宜得多
+    // 放在前面可以快速剔除大量远处的草
+    
+    float3 viewDir = worldCenter - _CameraPos;
+    // 使用距离平方，避免 sqrt 开方运算
+    float distSq = dot(viewDir, viewDir); 
+    float maxDistSq = _MaxDistance * _MaxDistance;
+
+    // 如果超出最大距离，直接剔除
+    if (distSq > maxDistSq) return;
+
+    // --------------------------------------------------------
+    // 优化 2：视锥剔除 (Frustum Culling)
+    // --------------------------------------------------------
+    if (!IsInFrustum(worldCenter, worldExtents)) return;
+
+    // --------------------------------------------------------
+    // 优化 3：密度剔除 (Density Scaling)
+    // --------------------------------------------------------
+    float fadeStartSq = _FadeStartDistance * _FadeStartDistance;
+
+    // 只有当距离超过淡出阈值时，才进行昂贵的随机运算和开方
+    if (distSq > fadeStartSq)
+    {
+        // 此时才需要真实的距离来进行线性插值
+        float dist = sqrt(distSq);
+        
+        float factor = 1.0 - saturate((dist - _FadeStartDistance) / (_MaxDistance - _FadeStartDistance));
+        
+        // 优化：使用 worldCenter 作为随机种子，而不是读取 transformMatrix
+        // id.x 确保每根草种子不同，worldCenter.x+z 确保位置相关
+        float seedVal = id.x * 0.001 + worldCenter.x + worldCenter.z;
+        float rnd = GetRandom(float2(seedVal, seedVal * 0.5));
+        
+        if (rnd > factor) return;
+    }
+
+    if (_DebugEnabled == 1)
+    {
+        InterlockedAdd(_DebugCounters[1], 1);
+    }
+
+    _VisibleInstancesBuffer.Append(id.x);
+}

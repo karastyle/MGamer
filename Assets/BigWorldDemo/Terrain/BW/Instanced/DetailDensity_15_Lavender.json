@@ -1,0 +1,12 @@
+{
+    "layerIndex": 15,
+    "alignToGround": 1.0,
+    "renderMode": "VertexLit",
+    "minWidth": 0.20000000298023225,
+    "maxWidth": 1.2000000476837159,
+    "minHeight": 0.20000000298023225,
+    "maxHeight": 1.2000000476837159,
+    "noiseSpread": 1.6100000143051148,
+    "noiseSeed": 1941901056.0,
+    "prototypeName": "Lavender"
+}

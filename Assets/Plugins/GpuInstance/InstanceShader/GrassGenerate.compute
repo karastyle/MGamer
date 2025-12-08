@@ -1,0 +1,258 @@
+﻿// GrassGenerate.compute
+#pragma kernel GenerateGrass
+#pragma kernel VoteInstances // ✅ 1. 新增 Kernel
+
+struct InstanceData
+{
+    float4x4 transformMatrix;
+    float4 boundsCenter;
+    float4 boundsExtents;
+};
+
+Texture2D<float> _DensityMap;
+Texture2D<float4> _HeightMap;
+SamplerState sampler_DensityMap; 
+SamplerState sampler_HeightMap;
+
+float3 _TerrainPosition;
+float3 _TerrainSize;
+float2 _DensityMapSize;
+float2 _SizeRange;
+float2 _HeightRange;
+
+float _NoiseSpread;       
+float _DensityMultiplier;
+float _Seed;
+
+// ✅ 新增参数
+float _AlignToGround;    // 0~1
+float4 _HeightMapSize;   // x,y = width,height; z,w = 1/width, 1/height
+
+// ✅ 新增：接收草的本地包围盒
+float4 _LocalBoundsCenter; 
+float4 _LocalBoundsExtents;
+
+AppendStructuredBuffer<InstanceData> _ResultBuffer;
+
+// ✅ 2. 新增计数 Buffer
+RWStructuredBuffer<uint> _VoteBuffer;
+
+// -------------------------------------------------------------------------
+// 数学工具库 (保持原样)
+// -------------------------------------------------------------------------
+
+float Hash(float2 p)
+{
+    p = frac(p * float2(123.34, 456.21));
+    p += dot(p, p + 45.32);
+    return frac(p.x * p.y);
+}
+
+float2 HashGradient(float2 p)
+{
+    p = float2(dot(p, float2(127.1, 311.7)), dot(p, float2(269.5, 183.3)));
+    return -1.0 + 2.0 * frac(sin(p) * 43758.5453123);
+}
+
+float GradientNoise(float2 p)
+{
+    float2 i = floor(p);
+    float2 f = frac(p);
+    float2 u = f * f * f * (f * (f * 6.0 - 15.0) + 10.0);
+    return lerp(lerp(dot(HashGradient(i + float2(0.0, 0.0)), f - float2(0.0, 0.0)),
+                     dot(HashGradient(i + float2(1.0, 0.0)), f - float2(1.0, 0.0)), u.x),
+                lerp(dot(HashGradient(i + float2(0.0, 1.0)), f - float2(0.0, 1.0)),
+                     dot(HashGradient(i + float2(1.0, 1.0)), f - float2(1.0, 1.0)), u.x), u.y);
+}
+
+// 四元数乘法
+float4 QMul(float4 q1, float4 q2)
+{
+    return float4(
+        q1.w * q2.x + q1.x * q2.w + q1.y * q2.z - q1.z * q2.y,
+        q1.w * q2.y - q1.x * q2.z + q1.y * q2.w + q1.z * q2.x,
+        q1.w * q2.z + q1.x * q2.y - q1.y * q2.x + q1.z * q2.w,
+        q1.w * q2.w - q1.x * q2.x - q1.y * q2.y - q1.z * q2.z
+    );
+}
+
+// 从两个向量计算旋转四元数 (From -> To)
+float4 FromToRotation(float3 from, float3 to)
+{
+    float3 axis = cross(from, to);
+    float d = dot(from, to);
+    
+    // 处理平行和反向的情况
+    if (d >= 1.0) return float4(0,0,0,1);
+    if (d <= -1.0) return float4(1,0,0,0); 
+    
+    float4 q = float4(axis, 1.0 + d);
+    return normalize(q);
+}
+
+float4x4 MakeTRS(float3 pos, float4 rot, float3 scale)
+{
+    float x = rot.x * 2.0; float y = rot.y * 2.0; float z = rot.z * 2.0;
+    float xx = rot.x * x;  float yy = rot.y * y;  float zz = rot.z * z;
+    float xy = rot.x * y;  float xz = rot.x * z;  float yz = rot.y * z;
+    float wx = rot.w * x;  float wy = rot.w * y;  float wz = rot.w * z;
+
+    float4x4 m;
+    m[0][0] = (1.0 - (yy + zz)) * scale.x; m[0][1] = (xy - wz) * scale.y; m[0][2] = (xz + wy) * scale.z; m[0][3] = pos.x;
+    m[1][0] = (xy + wz) * scale.x; m[1][1] = (1.0 - (xx + zz)) * scale.y; m[1][2] = (yz - wx) * scale.z; m[1][3] = pos.y;
+    m[2][0] = (xz - wy) * scale.x; m[2][1] = (yz + wx) * scale.y; m[2][2] = (1.0 - (xx + yy)) * scale.z; m[2][3] = pos.z;
+    m[3][0] = 0.0; m[3][1] = 0.0; m[3][2] = 0.0; m[3][3] = 1.0;
+    return m;
+}
+
+// 计算地形法线
+float3 GetTerrainNormal(float2 uv)
+{
+    // 使用 texelSize 采样相邻点，而不是固定值，保证精度
+    float2 texel = _HeightMapSize.zw; 
+    
+    // 采样上下左右 4 个点的高度
+    float hL = _HeightMap.SampleLevel(sampler_HeightMap, uv - float2(texel.x, 0), 0).r;
+    float hR = _HeightMap.SampleLevel(sampler_HeightMap, uv + float2(texel.x, 0), 0).r;
+    float hD = _HeightMap.SampleLevel(sampler_HeightMap, uv - float2(0, texel.y), 0).r;
+    float hU = _HeightMap.SampleLevel(sampler_HeightMap, uv + float2(0, texel.y), 0).r;
+    
+    // 还原到世界空间尺寸
+    // dH/dX = (hR - hL) * size.y
+    // strideX = 2.0 * texel.x * size.x
+    
+    float3 va = float3(2.0, (hR - hL) * _TerrainSize.y, 0.0); // X轴切线 (归一化前 X=2个texel)
+    float3 vb = float3(0.0, (hU - hD) * _TerrainSize.y, 2.0); // Z轴切线 (归一化前 Z=2个texel)
+    
+    // 修正：地形 X/Z 比例差异
+    va.x *= _TerrainSize.x * texel.x; // 修正 X 轴跨度
+    vb.z *= _TerrainSize.z * texel.y; // 修正 Z 轴跨度
+    
+    // 叉乘得到法线 (Unity 是左手坐标系，cross(Z, X) = Y)
+    return normalize(cross(vb, va));
+}
+
+// -------------------------------------------------------------------------
+// ✅ 3. 提取公共逻辑：计算数量 (代码逻辑完全照搬原文件)
+// -------------------------------------------------------------------------
+int GetGrassCount(uint3 id)
+{
+    if (id.x >= _DensityMapSize.x || id.y >= _DensityMapSize.y)
+        return 0;
+
+    float2 uv = (float2(id.x, id.y) + 0.5) / _DensityMapSize;
+    
+    float density01 = _DensityMap.SampleLevel(sampler_DensityMap, uv, 0).r;
+    
+    // 原文件逻辑：注释掉了阈值判断
+    // if (density01 <= 0.001) return 0;  
+
+    float safeSeed = fmod(abs(_Seed), 100.0) + 12.34;
+    float2 seedOffset = float2(safeSeed, safeSeed * 1.5);
+
+    float targetCount = density01 * _DensityMultiplier; 
+    
+    // 原文件逻辑：注释掉了最小值判断
+    // if (targetCount < 0.5) targetCount = 0.5;  
+    
+    int count = (int)floor(targetCount);
+    float remainder = frac(targetCount);
+    
+    // 原文件逻辑：使用 id.x/y + seedOffset
+    if (Hash(float2(id.x, id.y) + seedOffset) < remainder) count++;
+    count = min(count, 16);
+    
+    // 原文件逻辑：count为0直接返回
+    // if (count == 0) count = 1;
+    
+    return count;
+}
+
+// -------------------------------------------------------------------------
+// ✅ 4. Vote Kernel (只统计，不生成)
+// -------------------------------------------------------------------------
+[numthreads(8, 8, 1)]
+void VoteInstances(uint3 id : SV_DispatchThreadID)
+{
+    int count = GetGrassCount(id);
+    if (count > 0)
+    {
+        InterlockedAdd(_VoteBuffer[0], count);
+    }
+}
+
+// -------------------------------------------------------------------------
+// ✅ 5. Generate Kernel (生成逻辑)
+// -------------------------------------------------------------------------
+[numthreads(8, 8, 1)]
+void GenerateGrass(uint3 id : SV_DispatchThreadID)
+{
+    int count = GetGrassCount(id);
+    if (count == 0) return;
+
+    // --- 下面完全是你的原始生成逻辑 ---
+
+    float2 uv = (float2(id.x, id.y) + 0.5) / _DensityMapSize;
+    float safeSeed = fmod(abs(_Seed), 100.0) + 12.34;
+    float2 seedOffset = float2(safeSeed, safeSeed * 1.5);
+
+    for (int i = 0; i < count; i++)
+    {
+        float2 localSeed = uv + float2(i * 0.13, i * 0.71) + seedOffset;
+        float2 jitter = float2(Hash(localSeed), Hash(localSeed + 11.0)) - 0.5;
+        
+        float pixelSizeX = _TerrainSize.x / _DensityMapSize.x;
+        float pixelSizeZ = _TerrainSize.z / _DensityMapSize.y;
+        
+        float3 worldPos;
+        worldPos.x = _TerrainPosition.x + (uv.x * _TerrainSize.x) + (jitter.x * pixelSizeX * 1.8);
+        worldPos.z = _TerrainPosition.z + (uv.y * _TerrainSize.z) + (jitter.y * pixelSizeZ * 1.8);
+
+        float2 subUV = float2(
+            (worldPos.x - _TerrainPosition.x) / _TerrainSize.x,
+            (worldPos.z - _TerrainPosition.z) / _TerrainSize.z
+        );
+        
+        float h = _HeightMap.SampleLevel(sampler_HeightMap, subUV, 0).r;
+        worldPos.y = _TerrainPosition.y + h * _TerrainSize.y;
+
+        float rotY = Hash(localSeed + 3.0) * 6.283185;
+        float4 qSpin = float4(0, sin(rotY * 0.5), 0, cos(rotY * 0.5));
+        float4 finalRot = qSpin;
+
+        if (_AlignToGround > 0.01)
+        {
+            float3 normal = GetTerrainNormal(subUV);
+            float3 targetUp = normalize(lerp(float3(0, 1, 0), normal, _AlignToGround));
+            float4 qTilt = FromToRotation(float3(0, 1, 0), targetUp);
+            finalRot = QMul(qTilt, qSpin);
+        }
+
+        // 原文件逻辑：使用 worldPos.xz 乘以 spread
+        float noiseVal = GradientNoise(worldPos.xz * _NoiseSpread);
+        noiseVal = noiseVal * 0.5 + 0.5;
+
+        float wScale = lerp(_SizeRange.x, _SizeRange.y, Hash(localSeed + 4.0));
+        float hScale = lerp(_HeightRange.x, _HeightRange.y, Hash(localSeed + 5.0));
+        
+        wScale *= lerp(0.8, 1.2, noiseVal);
+        hScale *= lerp(0.8, 1.2, noiseVal);
+
+        InstanceData data;
+        float4x4 mat = MakeTRS(worldPos, finalRot, float3(wScale, hScale, wScale));
+        data.transformMatrix = mat;
+        
+        // ✅ 核心修改：在生成时一次性算好世界包围盒
+        // 使用传入的 _LocalBoundsCenter
+        data.boundsCenter = mul(mat, _LocalBoundsCenter);
+        // 简化计算世界尺寸: 本地尺寸 * 缩放
+        data.boundsExtents = float4(_LocalBoundsExtents.xyz * float3(wScale, hScale, wScale), 0);
+
+
+        // data.boundsCenter = float4(0, 0.5, 0, 1);
+        // data.boundsExtents = float4(0.5, 0.5, 0.5, 0);
+
+        
+        _ResultBuffer.Append(data);
+    }
+}

@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: fd5b9e3bd7e143989cb071b5aa4cb543
+timeCreated: 1670796599
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Scripts/Runtime/Nodes/CustomNode.cs
+  uploadId: 622293

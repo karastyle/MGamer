@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 0084e72163ff4b7ab0e1ef47ac9d4d48
+timeCreated: 1668684048
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Scripts/Runtime/Nodes/MoveToObject.cs
+  uploadId: 622293

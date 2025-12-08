@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: e72551fc91ad45a5860d6192d0d6517a
+timeCreated: 1668194645
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Scripts/Runtime/Timing/Timer.cs
+  uploadId: 622293

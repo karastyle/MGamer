@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 50233e81440e7c94f806c02735dd808f
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Examples/Zombies/Level/Terrain/Barricade.prefab
+  uploadId: 622293

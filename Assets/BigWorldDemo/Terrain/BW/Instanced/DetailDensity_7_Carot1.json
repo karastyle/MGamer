@@ -1,0 +1,12 @@
+{
+    "layerIndex": 7,
+    "alignToGround": 1.0,
+    "renderMode": "VertexLit",
+    "minWidth": 0.5,
+    "maxWidth": 1.0,
+    "minHeight": 0.5,
+    "maxHeight": 1.0,
+    "noiseSpread": 2.759999990463257,
+    "noiseSeed": 1027448512.0,
+    "prototypeName": "Carot1"
+}

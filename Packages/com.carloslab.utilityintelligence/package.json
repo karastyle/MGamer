@@ -1,0 +1,26 @@
+{
+  "name": "com.carloslab.utilityintelligence",
+  "version": "2.2.9",
+  "displayName": "CarlosLab - Utility Intelligence",
+  "description": "Utility Intelligence is a robust and powerful Utility AI-based framework. Unlike traditional AI techniques such as BTs, FSMs, and GOAP, which rely on conditions for decision-making, our agents evaluate all possible decisions and choose the one with the highest score to execute.\r\n\r\nAdditionally, each decision is scored per target, ensuring that the best target is selected for the chosen decision. This approach makes our agents behave more naturally than those using other AI techniques \ud83e\udd29.\r\n\r\nMoreover, Utility Intelligence provides the Decision Making Preview feature, which allows you to preview which decision is selected directly in the editor without having to enter Play Mode. This feature can save you a lot of time when designing your game agents.",
+  "documentationUrl": "https://uintel-go.carloslab-ai.com/Documentation/",
+  "changelogUrl": "https://uintel-go.carloslab-ai.com/Documentation/ReleaseNotes/v2/",
+  "licensesUrl": "https://unity.com/legal/as-terms",
+  "type": "library",
+  "unity": "6000.0",
+  "author": {
+    "name": "Carlos Lab",
+    "email": "support@carloslab-ai.com",
+    "url": "https://carloslab-ai.com/"
+  },
+  "dependencies": {
+    "com.carloslab.common": "2.2.9"
+  },
+  "samples": [
+    {
+      "displayName": "Examples",
+      "description": "A set of examples demonstrates how to create agents using Utility Intelligence.",
+      "path": "Examples~"
+    }
+  ]
+}

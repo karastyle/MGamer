@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c16689651509e8247a9d93b5c12a061e
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Examples/Zombies/Ai/Wander.asset
+  uploadId: 622293

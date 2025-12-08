@@ -1,0 +1,12 @@
+{
+    "layerIndex": 13,
+    "alignToGround": 0.7400000095367432,
+    "renderMode": "VertexLit",
+    "minWidth": 0.20000000298023225,
+    "maxWidth": 2.0,
+    "minHeight": 0.20000000298023225,
+    "maxHeight": 2.0,
+    "noiseSpread": 2.4100000858306886,
+    "noiseSeed": 174402064.0,
+    "prototypeName": "Gorse1"
+}

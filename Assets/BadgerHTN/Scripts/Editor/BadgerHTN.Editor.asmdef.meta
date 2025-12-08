@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: c4ee65979bb25d046bf72a1a7dcb1e32
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Scripts/Editor/BadgerHTN.Editor.asmdef
+  uploadId: 622293

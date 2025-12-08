@@ -1,0 +1,14 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Packages/com.carloslab.common/Unity/UI/Resources/UIBuilder/InfluenceCurve/InfluenceCurveField.uss?fileID=7433441132597879392&amp;guid=b08946061818b624286fded4523735f3&amp;type=3#InfluenceCurveField" />
+    <ui:VisualElement name="Container" style="flex-grow: 0;">
+        <CarlosLab.Common.UI.InfluenceCurveGraphView style="flex-grow: 1; min-width: 160px;" />
+        <ui:VisualElement name="Details" style="flex-grow: 1; flex-shrink: 0; margin-top: 10px;">
+            <ui:EnumField label="Type" name="TypeField" type="CarlosLab.Common.InfluenceCurveType, CarlosLab.Common.Hybrid" value="Linear" />
+            <ui:FloatField label="Slope" value="0" name="SlopeField" />
+            <ui:FloatField label="Exponent" value="0" name="ExponentField" />
+            <ui:FloatField label="XShift" value="0" name="XShiftField" />
+            <ui:FloatField label="YShift" value="0" name="YShiftField" />
+        </ui:VisualElement>
+        <CarlosLab.Common.UI.InfluenceCurvePresetView style="margin-top: 10px;" />
+    </ui:VisualElement>
+</ui:UXML>

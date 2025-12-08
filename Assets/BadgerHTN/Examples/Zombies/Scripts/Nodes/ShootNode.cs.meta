@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 9ee350df302e4a4b894ba92f49a33eb8
+timeCreated: 1668717707
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Examples/Zombies/Scripts/Nodes/ShootNode.cs
+  uploadId: 622293

@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: a0f90244013f48b3a8ee2687c52e8aa0
+timeCreated: 1667842219
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Examples/Zombies/Scripts/Humanoids/PlayerRotation.cs
+  uploadId: 622293

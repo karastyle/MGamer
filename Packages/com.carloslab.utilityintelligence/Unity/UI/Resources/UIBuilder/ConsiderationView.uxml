@@ -1,0 +1,15 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <ui:Label text="Consideration" name="TitleLabel" class="title-label" />
+    <ui:ScrollView name="Container" style="flex-grow: 1; margin-top: 5px;">
+        <ui:TextField label="Name" name="NameField" />
+        <ui:TextField label="Category" name="CategoryField" />
+        <ui:Toggle label="Has No Target" name="HasNoTargetToggle" />
+        <ui:Toggle label="Enable Cache Per Target" name="EnableCachePerTargetToggle" />
+        <ui:VisualElement name="KeyContainer" style="flex-grow: 1; flex-direction: row; margin-left: 5px; display: none;">
+            <ui:Label text="Key: " />
+            <ui:Label text="Consideration" name="KeyLabel" />
+        </ui:VisualElement>
+        <CarlosLab.UtilityIntelligence.UI.InputNormalizationViewConsiderationTab style="margin-top: 5px;" />
+        <CarlosLab.UtilityIntelligence.UI.ResponseCurveView style="margin-top: 5px;" />
+    </ui:ScrollView>
+</ui:UXML>

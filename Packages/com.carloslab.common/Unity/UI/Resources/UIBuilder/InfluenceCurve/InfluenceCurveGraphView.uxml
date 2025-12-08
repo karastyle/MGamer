@@ -1,0 +1,22 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Packages/com.carloslab.common/Unity/UI/Resources/UIBuilder/InfluenceCurve/InfluenceCurveGraphView.uss?fileID=7433441132597879392&amp;guid=e978623c20e03bb4fa8d57a86303bded&amp;type=3#InfluenceCurveGraphView" />
+    <ui:VisualElement name="Container" style="margin-left: 10px; margin-top: 15px; margin-bottom: 30px;">
+        <ui:VisualElement name="GraphInfoView" style="width: 150px; justify-content: center; flex-grow: 1; max-width: 150px; min-width: 150px; margin-right: 0; height: 120px; max-height: 120px; min-height: 120px;">
+            <ui:Label text="1" name="Y1Label" style="-unity-text-align: upper-right; position: absolute; top: -10px; left: 10px;" />
+            <ui:Label text="1" name="X1Label" style="position: absolute; right: 10px; bottom: -10px; top: auto;" />
+            <ui:Label text="0" name="0Label" style="position: absolute; right: auto; bottom: -10px; top: auto; left: 8px;" />
+            <ui:VisualElement name="GraphView" style="margin-left: 0; align-self: center; width: 100px; height: 100px;">
+                <ui:VisualElement name="InfluenceCurveView" style="margin-left: 0; flex-grow: 1; top: 0; bottom: 0; position: absolute; left: 0; right: 0;" />
+                <ui:VisualElement name="InputView" style="margin-left: 0; flex-grow: 1;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="InputContainer" style="flex-grow: 1; position: absolute; bottom: -30px; align-self: center;">
+                <ui:Label text="Input" name="InputLabel" />
+                <ui:Label text="1234" name="InputValueLabel" style="margin-top: 5px;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="ScoreContainer" style="flex-grow: 1; position: absolute; width: 25px; height: 50px; left: -5px;">
+                <ui:Label text="Score" name="ScoreLabel" tooltip="Non-Compensated Score" style="rotate: -90deg; top: 0; position: absolute;" />
+                <ui:Label text="1234" name="ScoreValueLabel" style="align-self: flex-end; -unity-text-align: upper-right; bottom: 0; position: absolute;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

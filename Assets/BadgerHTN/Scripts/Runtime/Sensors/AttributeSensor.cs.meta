@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: f667b7d94d2e4ff489b2ca9090450555
+timeCreated: 1673283770
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Scripts/Runtime/Sensors/AttributeSensor.cs
+  uploadId: 622293

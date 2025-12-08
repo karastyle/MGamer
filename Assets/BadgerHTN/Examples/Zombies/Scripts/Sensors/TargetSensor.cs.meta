@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: a83cdcaccfc945c695c6cccf890df3ff
+timeCreated: 1670155982
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Examples/Zombies/Scripts/Sensors/TargetSensor.cs
+  uploadId: 622293

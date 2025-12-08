@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: becebe5832ce47998ff4c67f9f63e6fe
+timeCreated: 1674127367
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Scripts/Runtime/Nodes/IRotateTo.cs
+  uploadId: 622293

@@ -1,0 +1,14 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <ui:VisualElement name="Title" style="margin-bottom: 25px; margin-top: 25px;">
+        <ui:Label text="Welcome to Utility Intelligence" name="WelcomeLabel" style="font-size: 20px; -unity-font-style: bold; padding-right: 0; padding-left: 0; -unity-text-align: middle-center;" />
+        <ui:Label text="Thank you for choosing Utility Intelligence!" name="ThanksLabel" style="-unity-text-align: middle-center; font-size: 13px;" />
+    </ui:VisualElement>
+    <ui:Button text="&lt;b&gt;&lt;size=16&gt;Documentation&lt;/size&gt;&lt;/b&gt;&lt;br&gt;Read our online documentation." name="DocumentationButton" icon-image="project://database/Packages/com.carloslab.utilityintelligence/Unity/Editor/UIBuilder/Icons/documentation.png?fileID=2800000&amp;guid=f3cd3d970b0874246a3ffaf47577e72c&amp;type=3#documentation" style="height: 70px; background-color: rgb(45, 45, 45); align-items: stretch; justify-content: flex-start; -unity-text-align: middle-left; margin-right: 10px; padding-right: 0; padding-top: 0; padding-bottom: 0; padding-left: 0; margin-left: 10px; margin-bottom: 0; margin-top: 0;" />
+    <ui:Button text="&lt;b&gt;&lt;size=16&gt;Community&lt;/size&gt;&lt;/b&gt;&lt;br&gt;Join our Discord community." name="DiscordButton" icon-image="project://database/Packages/com.carloslab.utilityintelligence/Unity/Editor/UIBuilder/Icons/discord.png?fileID=2800000&amp;guid=d0d7df123466b374c8c7474d187cfada&amp;type=3#discord" style="height: 70px; background-color: rgb(45, 45, 45); align-items: stretch; justify-content: flex-start; -unity-text-align: middle-left; margin-top: 10px; margin-left: 10px; margin-bottom: 0; margin-right: 10px; padding-right: 0; padding-top: 0; padding-left: 0; padding-bottom: 0;" />
+    <ui:Label text="If you like this plugin, please support me by leaving a 5-star review on &lt;a href=&quot;https://www.buymeacoffee.com/carlos_truong&quot;&gt;the Unity Asset Store&lt;/a&gt;. Thank you!" name="SupportLabel" style="white-space: normal; margin-top: 10px; padding-left: 0; padding-right: 0; margin-right: 10px; margin-left: 10px; -unity-text-align: middle-left; font-size: 13px;" />
+    <ui:VisualElement name="FrameworkPanel" style="flex-grow: 1; flex-direction: row; margin-top: 24px; justify-content: space-between; margin-right: 10px; margin-left: 10px;">
+        <ui:Label text="Framework Version:" name="FrameworkVersionLabel" />
+        <ui:Toggle label="Don&apos;t show again" name="DontShowAgainToggle" style="height: 14px;" />
+    </ui:VisualElement>
+    <ui:Image name="FrameworkIcon" style="width: 70px; height: 70px; position: absolute; top: 10px; left: 10px;" />
+</ui:UXML>

@@ -1,0 +1,16 @@
+.unity-button__image {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.unity-button.unity-text-element {
+    color: rgb(255, 255, 255);
+}
+
+.link-cursor {
+    cursor: link;
+}
+
+#FrameworkIcon {
+    background-image: url("project://database/Packages/com.carloslab.utilityintelligence/Unity/Editor/UIBuilder/Icons/carloslab-icon.png?fileID=2800000&guid=8be1c7d72ab796c42af93a7182df15da&type=3#carloslab-icon");
+}

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: a25e2dca43e7ab142845a60e75b04be2
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Examples/Zombies/Level/Guns/Shotgun.prefab
+  uploadId: 622293

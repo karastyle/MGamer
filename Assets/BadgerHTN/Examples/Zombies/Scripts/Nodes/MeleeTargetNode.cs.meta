@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 6b8b01996cfc4504a717a405dee77fce
+timeCreated: 1670163100
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Examples/Zombies/Scripts/Nodes/MeleeTargetNode.cs
+  uploadId: 622293

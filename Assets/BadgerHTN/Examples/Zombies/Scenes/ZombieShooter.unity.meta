@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 020c0bc5e8c838c40a5653ed0043d431
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Examples/Zombies/Scenes/ZombieShooter.unity
+  uploadId: 622293

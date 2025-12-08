@@ -1,0 +1,12 @@
+{
+    "layerIndex": 25,
+    "alignToGround": 0.41200000047683718,
+    "renderMode": "VertexLit",
+    "minWidth": 0.5,
+    "maxWidth": 2.0,
+    "minHeight": 0.5,
+    "maxHeight": 2.0,
+    "noiseSpread": 1.5399999618530274,
+    "noiseSeed": 1020060288.0,
+    "prototypeName": "GrassMeadows4"
+}

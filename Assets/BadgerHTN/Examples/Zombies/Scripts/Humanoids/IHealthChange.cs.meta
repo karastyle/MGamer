@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 4b0d3ebf38e243109dd200a78106256d
+timeCreated: 1668248565
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244599
+  packageName: Badger HTN
+  packageVersion: 1.0.2
+  assetPath: Assets/BadgerHTN/Examples/Zombies/Scripts/Humanoids/IHealthChange.cs
+  uploadId: 622293
