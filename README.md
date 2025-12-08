@@ -3,6 +3,7 @@
 性能优化案例：请看 Docs/性能优化-大地图.pdf
 
 编辑器下运行
+
 1 进入StartScene场景
 
 2 确保资源加载模式是Editor Simulate Mode
