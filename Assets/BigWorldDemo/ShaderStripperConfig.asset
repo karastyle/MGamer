@@ -12,6 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90016b8a4cd0f1b4bbb74b21eaca5417, type: 3}
   m_Name: ShaderStripperConfig
   m_EditorClassIdentifier: 
-  configVersion: 31
-  shaderRules: []
+  configVersion: 1
+  shaderRules:
+  - shader: {fileID: 4800000, guid: ffa3a579a491c964083088a4f774d212, type: 3}
+    rules:
+    - ruleName: Rule 0
+      enabled: 1
+      ruleType: 0
+      keyword1: _COLORMODE_BLUE
+      keyword2: _COLORMODE_BLUE
   directoryRules: []
