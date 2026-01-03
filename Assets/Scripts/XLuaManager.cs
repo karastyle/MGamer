@@ -58,15 +58,15 @@ public class XLuaManager : MonoBehaviour
         yield return null;
     }
 
-    public IEnumerable StartLua()
+    public IEnumerator StartLua()
     {
         if (loadFromAssetBundle)
         {
             Debug.Log("[XLuaManager] 初始化Lua环境 - AssetBundle模式");
-
+        
             // 【关键】先加载Lua Bundle
             yield return PreloadLuaBundle();
-
+        
             InitLuaEnv();
             StartupLua();
         }
@@ -74,15 +74,15 @@ public class XLuaManager : MonoBehaviour
         {
             luaScriptPath = Path.Combine(Application.dataPath, "..", luaScriptFolder);
             luaScriptPath = Path.GetFullPath(luaScriptPath);
-
+        
             Debug.Log($"[XLuaManager] Lua脚本路径: {luaScriptPath}");
-
+        
             if (!Directory.Exists(luaScriptPath))
             {
                 Debug.LogError($"[XLuaManager] Lua脚本目录不存在: {luaScriptPath}");
                 yield break;
             }
-
+        
             InitLuaEnv();
             StartupLua();
         }

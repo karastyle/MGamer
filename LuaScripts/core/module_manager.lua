@@ -59,9 +59,8 @@ function ModuleManager.Initialize()
     Debug.Log("模块管理器初始化...")
     
     -- 这里可以注册你的模块
-    -- 例如：
-    -- local GameModule = require("game.game_module")
-    -- ModuleManager.RegisterModule("GameModule", GameModule.new())
+    local GameModule = require("game/game_module")
+    ModuleManager.RegisterModule("GameModule", GameModule.new())
     
     Debug.Log("模块管理器初始化完成")
 end
