@@ -29,6 +29,7 @@ local function Initialize()
     -- 初始化模块管理器
     ModuleManager.Initialize()
 
+    -- 测试的时候stop， 避免影响luaProfiler的统计
     collectgarbage("stop")
 
     isInitialized = true
