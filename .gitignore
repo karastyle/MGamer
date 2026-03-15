@@ -85,3 +85,5 @@ crashlytics-build.properties
 /Assets/StreamingAssets
 *.zip
 /WebServer
+Assets/.claude/worktrees/great-heyrovsky/
+Assets/.claude/worktrees/admiring-spence/
