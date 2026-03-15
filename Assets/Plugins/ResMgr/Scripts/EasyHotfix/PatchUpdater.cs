@@ -160,7 +160,7 @@ namespace EasyTools
 
         // 修改后的PatchUpdater构造函数代码段
 
-        public PatchUpdater(string hostServer)
+        public PatchUpdater(string hostServer, bool isOfflineMode = false)
         {
             _hostServer = hostServer;
             _patchManager = new PatchManager();
@@ -189,6 +189,7 @@ namespace EasyTools
             _machine.SetBlackboardValue("PatchUpdater", this);
             _machine.SetBlackboardValue("UpdateLoopCount", 0);
             _machine.SetBlackboardValue("MaxUpdateLoops", _maxUpdateLoops);
+            _machine.SetBlackboardValue("IsOfflineMode", isOfflineMode);
         }
 
         public void SetStepName(string stepName)
@@ -227,7 +228,7 @@ namespace EasyTools
 
             _machine.Run<FsmCheckAppConfig>();
 
-            yield return new WaitUntil(() => _machine.CurrentNode == null);
+            yield return new WaitUntil(() => string.IsNullOrEmpty(_machine.CurrentNode));
         }
     }
 
@@ -327,13 +328,22 @@ namespace EasyTools
             string cacheRoot = PathConfig.GetCacheRoot();
             string manifestPath = Path.Combine(cacheRoot, "DefaultPackage_Manifest.json");
             var patchManager = (PatchManager)_machine.GetBlackboardValue("PatchManager");
-
+            bool isOffline = (bool)_machine.GetBlackboardValue("IsOfflineMode");
+            
             // ✅ 如果cache目录已有manifest文件，跳过解压
             if (File.Exists(manifestPath))
             {
                 Debug.Log("[Patch] Cache目录已有manifest文件，跳过首包解压");
                 patchManager.ReloadLocalVersion();
-                _machine.ChangeState<FsmRequestVersion>();
+
+                if (isOffline)
+                {
+                    _machine.ChangeState<FsmPatchComplete>();
+                }
+                else
+                {
+                    _machine.ChangeState<FsmRequestVersion>();
+                }
                 yield break;
             }
 
@@ -427,7 +437,14 @@ namespace EasyTools
 
             patchManager.ReloadLocalVersion();
 
-            _machine.ChangeState<FsmRequestVersion>();
+            if (isOffline)
+            {
+                _machine.ChangeState<FsmPatchComplete>();
+            }
+            else
+            {
+                _machine.ChangeState<FsmRequestVersion>();
+            }
         }
     }
 
@@ -1223,7 +1240,16 @@ namespace EasyTools
 
             Debug.Log($"[Patch] 当前版本: {patchManager.CurrentVersion}");
 
-            EasyAsset.Instance.StartCoroutine(CheckForNewUpdates(patchManager, updater));
+            bool isOffline = (bool)_machine.GetBlackboardValue("IsOfflineMode");
+            if (isOffline)
+            {
+                Debug.Log("[Patch] 离线模式，更新流程结束");
+                _machine.Stop();
+            }
+            else
+            {
+                EasyAsset.Instance.StartCoroutine(CheckForNewUpdates(patchManager, updater));
+            }
         }
 
         void IStateNode.OnUpdate()
@@ -1259,7 +1285,6 @@ namespace EasyTools
             }
             else
             {
-                //这里可以发个事件通知外部更新完成
                 Debug.Log("[Patch] 无新版本,更新流程结束");
 
                 //判断是否进入后台下载
@@ -1269,6 +1294,10 @@ namespace EasyTools
                 {
                     //后台下载完整资源
                     _machine.ChangeState<FsmStartBackgroundDownload>();
+                }
+                else
+                {
+                    _machine.Stop();
                 }
             }
         }

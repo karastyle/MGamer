@@ -1,4 +1,4 @@
-﻿// UIExample.cs (UI使用示例)
+// UIExample.cs
 
 using DG.Tweening;
 using UnityEngine;
@@ -8,49 +8,55 @@ namespace EasyTools
 {
     public class UIExample : MonoBehaviour
     {
-        public PatchUpdaterMono patchUpdater;
-        public Button updateButton;
         public Text progressText;
         public Image progress;
+        public string targetSceneName = "GameScene";
+
+        private PatchUpdaterMono _patchUpdater;
+        private bool _completed = false;
 
         void Start()
         {
-            updateButton.onClick.AddListener(OnUpdateButtonClick);
+            _patchUpdater = GlobalInitializer.Instance.GetModule<PatchUpdaterMono>();
         }
 
         void Update()
         {
-            if (patchUpdater.IsUpdating)
+            if (_patchUpdater == null || _completed) return;
+
+            if (_patchUpdater.IsUpdating)
             {
-                progressText.text = patchUpdater.GetProgressText();
-                progress.DOFillAmount(patchUpdater.Progress, 0.2f);
-                updateButton.interactable = false;
+                progressText.text = _patchUpdater.GetProgressText();
+                progress.DOFillAmount(_patchUpdater.Progress, 0.2f);
             }
-            else
+            else if (_patchUpdater.UpdateComplete)
             {
-                updateButton.interactable = true;
-                
-                if (patchUpdater.UpdateComplete)
-                {
-                    progressText.text = "更新完成!";
-                    progress.DOFillAmount(1, 0.2f);
-                }
-                else if (patchUpdater.UpdateFailed)
-                {
-                    progressText.text = $"更新失败:\n{patchUpdater.ErrorMessage}";
-                }
+                progressText.text = "更新完成!";
+                progress.DOFillAmount(1f, 0.2f);
+                _completed = true;
+            }
+            else if (_patchUpdater.UpdateFailed)
+            {
+                progressText.text = $"更新失败:\n{_patchUpdater.ErrorMessage}";
             }
         }
 
-        void OnUpdateButtonClick()
+        void EnterScene()
         {
-            var playMode = GlobalInitializer.Instance.GetPlayMode();
-            if(playMode != EPlayMode.HostPlayMode)
+            var uiManager = GlobalInitializer.Instance.GetModule<UIManager>();
+            if (uiManager == null)
             {
-                Debug.Log("当前非热更模式，无需更新资源");
+                Debug.LogError("[UIExample] UIManager模块未找到");
                 return;
             }
-            patchUpdater.StartUpdate();
+
+            uiManager.OpenPanel(PanelType.Loading);
+
+            var loadingScreen = uiManager.GetPanelComponent<LoadingScreen>(PanelType.Loading);
+            if (loadingScreen != null)
+                loadingScreen.LoadScene(targetSceneName);
+            else
+                Debug.LogError("[UIExample] LoadingScreen组件未找到");
         }
     }
 }

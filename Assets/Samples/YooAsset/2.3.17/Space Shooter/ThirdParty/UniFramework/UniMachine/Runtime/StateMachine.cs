@@ -102,6 +102,18 @@ namespace UniFramework.Machine
 		}
 
 		/// <summary>
+		/// 停止状态机
+		/// </summary>
+		public void Stop()
+		{
+			if (_curNode != null)
+			{
+				_curNode.OnExit();
+				_curNode = null;
+			}
+		}
+
+		/// <summary>
 		/// 转换状态节点
 		/// </summary>
 		public void ChangeState<TNode>() where TNode : IStateNode

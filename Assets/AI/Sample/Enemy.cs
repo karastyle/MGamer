@@ -2,7 +2,6 @@
 using System.Linq;
 using CarlosLab.UtilityIntelligence;
 using CarlosLab.UtilityIntelligence.Examples;
-using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -12,7 +11,7 @@ public class Enemy : UtilityAgentFacade, IAuctionListener
     public RoleType roleType = RoleType.Enemy;
     public EnemyType enemyType = EnemyType.Near;
 
-    [ReadOnly] public int enemyId;  // ✅ 唯一编号
+    public int enemyId;  // ✅ 唯一编号
     private NavMeshAgent agent;
 
     // ✅ 当前正在使用的 Slot

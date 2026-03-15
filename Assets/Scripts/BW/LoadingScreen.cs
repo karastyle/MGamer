@@ -13,9 +13,9 @@ public class LoadingScreen : MonoBehaviour
 
     private SceneHandle _sceneHandle;
 
-    private void Awake()
+    public void LoadScene(string sceneName)
     {
-        _targetSceneName = GlobalInitializer.Instance.loadingSceneName;
+        _targetSceneName = sceneName;
         StartCoroutine(LoadSceneCoroutine());
     }
 

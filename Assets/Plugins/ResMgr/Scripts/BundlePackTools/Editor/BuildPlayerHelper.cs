@@ -5,13 +5,14 @@ using UnityEditor;
 using UnityEditor.Build.Reporting;
 using UnityEngine;
 using System.IO;
+using System.Linq;
 using System.Text;
 using UnityEditor.Build.Pipeline;
 using UnityEditor.Build.Pipeline.Interfaces;
 
 public static class BuildPlayerHelper
 {
-    public static void BuildPlayer(AssetBundleConfig config, BuildTarget target)
+    public static bool BuildPlayer(AssetBundleConfig config, BuildTarget target)
     {
         string platformName = GetPlatformName(target);
         string outputPath = Path.Combine(config.buildOutputPath, platformName);
@@ -47,16 +48,20 @@ public static class BuildPlayerHelper
 
         if (summary.result == BuildResult.Succeeded)
         {
+            float fileSizeMB = new FileInfo(fullPath).Length / 1024f / 1024f;
             Debug.Log($"打包成功: {fullPath}");
-            Debug.Log($"包体大小: {summary.totalSize / 1024f / 1024f:F2} MB");
+            Debug.Log($"包体大小: {fileSizeMB:F2} MB");
             EditorUtility.DisplayDialog("Success",
-                $"打包成功!\n\n输出路径: {fullPath}\n包体大小: {summary.totalSize / 1024f / 1024f:F2} MB",
+                $"打包成功!\n\n输出路径: {fullPath}\n包体大小: {fileSizeMB:F2} MB",
                 "OK");
+            return true;
         }
         else
         {
             Debug.LogError($"打包失败: {summary.result}");
-            EditorUtility.DisplayDialog("Error", $"打包失败: {summary.result}", "OK");
+            if (summary.result != BuildResult.Cancelled)
+                EditorUtility.DisplayDialog("Error", $"打包失败: {summary.result}", "OK");
+            return false;
         }
     }
 
@@ -273,5 +278,172 @@ public static class BuildPlayerHelper
         sb.AppendLine("╚════════════════════════════════════════════════════════════════╝\n");
 
         Debug.Log(sb.ToString());
+    }
+    
+    public static string GetAdbPath()
+    {
+        // 优先从 Unity Android SDK 设置里找
+        string sdkRoot = EditorPrefs.GetString("AndroidSdkRoot");
+        if (!string.IsNullOrEmpty(sdkRoot))
+        {
+            string adbPath = Path.Combine(sdkRoot, "platform-tools", "adb");
+    #if UNITY_EDITOR_WIN
+            adbPath += ".exe";
+    #endif
+            if (File.Exists(adbPath))
+                return adbPath;
+        }
+
+        // 兜底：用系统 PATH 里的 adb
+        return "adb";
+    }
+
+    public static string RunAdb(string args, string adbPath = null)
+    {
+        adbPath ??= GetAdbPath();
+
+        var process = new System.Diagnostics.Process();
+        process.StartInfo = new System.Diagnostics.ProcessStartInfo
+        {
+            FileName = adbPath,
+            Arguments = args,
+            RedirectStandardOutput = true,
+            RedirectStandardError = true,
+            UseShellExecute = false,
+            CreateNoWindow = true
+        };
+
+        process.Start();
+        string output = process.StandardOutput.ReadToEnd();
+        string error = process.StandardError.ReadToEnd();
+        process.WaitForExit();
+
+        if (!string.IsNullOrEmpty(error) && process.ExitCode != 0)
+            Debug.LogWarning($"[ADB] {args}\n{error}");
+
+        return output;
+    }
+
+    // 返回已连接设备列表，格式：["serial\tdevice", ...]
+    public static List<string> GetConnectedDevices()
+    {
+        var result = new List<string>();
+        string output = RunAdb("devices");
+
+        foreach (var line in output.Split('\n'))
+        {
+            string trimmed = line.Trim();
+            if (string.IsNullOrEmpty(trimmed)) continue;
+            if (trimmed.StartsWith("List of devices")) continue;
+            if (trimmed.Contains("device") || trimmed.Contains("unauthorized"))
+                result.Add(trimmed);
+        }
+
+        return result;
+    }
+
+    public static void InstallAndLaunch(string apkPath, string deviceSerial, string packageName)
+    {
+        string serial = string.IsNullOrEmpty(deviceSerial) ? "" : $"-s {deviceSerial}";
+
+        // 先卸载旧包，避免签名冲突需要手动确认
+        Debug.Log($"[ADB] 卸载旧版本: {packageName}");
+        RunAdb($"{serial} uninstall {packageName}");
+
+        Debug.Log($"[ADB] 开始安装: {apkPath}");
+        string installResult = RunAdb($"{serial} install \"{apkPath}\"");
+        Debug.Log($"[ADB] 安装结果: {installResult}");
+
+        if (!installResult.Contains("Success"))
+        {
+            Debug.LogError($"[ADB] 安装失败: {installResult}");
+            return;
+        }
+
+        // 从 APK 里查询真实的 launchable Activity
+        string activityName = GetLaunchActivity(apkPath, packageName);
+        if (string.IsNullOrEmpty(activityName))
+        {
+            // 兜底：直接用 monkey 启动
+            Debug.LogWarning("[ADB] 未能解析 Activity，使用 monkey 启动");
+            RunAdb($"{serial} shell monkey -p {packageName} -c android.intent.category.LAUNCHER 1");
+            return;
+        }
+
+        Debug.Log($"[ADB] 启动: {packageName}/{activityName}");
+        string launchResult = RunAdb($"{serial} shell am start -n {packageName}/{activityName}");
+        Debug.Log($"[ADB] 启动结果: {launchResult}");
+    }
+
+    private static string GetLaunchActivity(string apkPath, string packageName)
+    {
+        // 用 aapt 或 aapt2 查询，Unity Android SDK 里自带
+        string sdkRoot = EditorPrefs.GetString("AndroidSdkRoot");
+        string aaptPath = FindAapt(sdkRoot);
+
+        if (string.IsNullOrEmpty(aaptPath))
+        {
+            Debug.LogWarning("[ADB] 未找到 aapt，无法解析 Activity");
+            return null;
+        }
+
+        var process = new System.Diagnostics.Process();
+        process.StartInfo = new System.Diagnostics.ProcessStartInfo
+        {
+            FileName = aaptPath,
+            Arguments = $"dump badging \"{apkPath}\"",
+            RedirectStandardOutput = true,
+            RedirectStandardError = true,
+            UseShellExecute = false,
+            CreateNoWindow = true
+        };
+
+        process.Start();
+        string output = process.StandardOutput.ReadToEnd();
+        process.WaitForExit();
+
+        // 解析 launchable-activity 行
+        foreach (var line in output.Split('\n'))
+        {
+            if (line.StartsWith("launchable-activity"))
+            {
+                // launchable-activity: name='com.xxx.MainActivity' ...
+                int nameStart = line.IndexOf("name='") + 6;
+                int nameEnd = line.IndexOf("'", nameStart);
+                if (nameStart > 5 && nameEnd > nameStart)
+                    return line.Substring(nameStart, nameEnd - nameStart);
+            }
+        }
+
+        return null;
+    }
+
+    private static string FindAapt(string sdkRoot)
+    {
+        if (string.IsNullOrEmpty(sdkRoot)) return null;
+
+        string buildToolsPath = Path.Combine(sdkRoot, "build-tools");
+        if (!Directory.Exists(buildToolsPath)) return null;
+
+        // 取版本号最高的 build-tools
+        var versions = Directory.GetDirectories(buildToolsPath)
+            .OrderByDescending(d => d)
+            .ToArray();
+
+        foreach (var versionDir in versions)
+        {
+    #if UNITY_EDITOR_WIN
+            string aapt = Path.Combine(versionDir, "aapt.exe");
+    #else
+            string aapt = Path.Combine(versionDir, "aapt");
+    #endif
+            if (File.Exists(aapt))
+            {
+                Debug.Log($"[ADB] 找到 aapt: {aapt}");
+                return aapt;
+            }
+        }
+
+        return null;
     }
 }

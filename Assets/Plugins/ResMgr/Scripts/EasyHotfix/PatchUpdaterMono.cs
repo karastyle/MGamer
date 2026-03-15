@@ -1,4 +1,5 @@
 ﻿// PatchUpdaterMono.cs
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -8,10 +9,10 @@ namespace EasyTools
     {
         [Header("本地服务器配置")]
         public string hostLocalServer = "http://127.0.0.1:8080/CDN";
-        
+
         [Header("局域网服务器配置")]
         public string hostNetServer = "http://192.168.1.15:8080/CDN";
-        
+
         private PatchUpdater _updater;
         private bool _isUpdating = false;
 
@@ -27,8 +28,18 @@ namespace EasyTools
         public bool UpdateFailed { get; private set; } = false;
         public string ErrorMessage { get; private set; } = "";
 
+        private Action _onUpdateComplete;
+        private Action<string> _onUpdateFailed;
+
+        public void RegisterOnUpdateComplete(Action callback) => _onUpdateComplete += callback;
+        public void RegisterOnUpdateFailed(Action<string> callback) => _onUpdateFailed += callback;
+        public void UnregisterOnUpdateComplete(Action callback) => _onUpdateComplete -= callback;
+        public void UnregisterOnUpdateFailed(Action<string> callback) => _onUpdateFailed -= callback;
+
         private float _lastUpdateTime;
         private ulong _lastDownloadedBytes;
+
+        [HideInInspector] public bool isOfflineMode = false;
 
         public void StartUpdate()
         {
@@ -45,6 +56,13 @@ namespace EasyTools
             StartCoroutine(UpdateCoroutine());
         }
 
+        public void ResetUpdateComplete()
+        {
+            UpdateComplete = false;
+            UpdateFailed = false;
+            ErrorMessage = "";
+        }
+        
         private IEnumerator UpdateCoroutine()
         {
             _isUpdating = true;
@@ -59,7 +77,7 @@ namespace EasyTools
             
             Debug.Log($"Use hostServer : {hostServer}");
             
-            _updater = new PatchUpdater(hostServer);
+            _updater = new PatchUpdater(hostServer, isOfflineMode);
             
             yield return _updater.StartUpdate();
 
@@ -70,11 +88,13 @@ namespace EasyTools
                 UpdateFailed = true;
                 ErrorMessage = _updater.ErrorMessage;
                 CurrentStepName = "更新失败";
+                _onUpdateFailed?.Invoke(ErrorMessage);
             }
             else
             {
                 UpdateComplete = true;
                 CurrentStepName = "更新完成";
+                _onUpdateComplete?.Invoke();
             }
         }
 

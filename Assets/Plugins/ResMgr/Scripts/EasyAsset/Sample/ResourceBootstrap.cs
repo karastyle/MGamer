@@ -23,6 +23,8 @@ namespace EasyTools
             yield return EasyAsset.Instance.InitializeAsync(playMode);
 
             Debug.Log($"[ResourceBootstrap] EasyAsset初始化完成");
+
+            yield return InitResource();
         }
 
         public IEnumerable InitResource()

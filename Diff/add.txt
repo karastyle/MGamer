@@ -1,0 +1,15 @@
+type:LUA_TTABLE
+ └─object
+   └─ref1 url:[_G]->[require(function:=[C]&line:-1)]->[]->[loaded]->[core/module_manager]->[FixedUpdate(function:@core/module_manager&line:102)]->[modules]->[SnapShotModule]->[test_root]->[Test_Gen_Obj_10]
+ └─object
+   └─ref1 url:[_G]->[require(function:=[C]&line:-1)]->[]->[loaded]->[core/module_manager]->[FixedUpdate(function:@core/module_manager&line:102)]->[modules]->[SnapShotModule]->[test_root]->[Test_Gen_Obj_8]
+ └─object
+   └─ref1 url:[_G]->[require(function:=[C]&line:-1)]->[]->[loaded]->[core/module_manager]->[FixedUpdate(function:@core/module_manager&line:102)]->[modules]->[SnapShotModule]->[test_root]->[Test_Gen_Obj_9]
+ └─object
+   └─ref1 url:[_G]->[require(function:=[C]&line:-1)]->[]->[loaded]->[core/module_manager]->[FixedUpdate(function:@core/module_manager&line:102)]->[modules]->[SnapShotModule]->[test_root]->[Test_Gen_Obj_8]->[data]
+ └─object
+   └─ref1 url:[_G]->[require(function:=[C]&line:-1)]->[]->[loaded]->[core/module_manager]->[FixedUpdate(function:@core/module_manager&line:102)]->[modules]->[SnapShotModule]->[test_root]->[Test_Gen_Obj_10]->[data]
+ └─object
+   └─ref1 url:[_G]->[require(function:=[C]&line:-1)]->[]->[loaded]->[core/module_manager]->[FixedUpdate(function:@core/module_manager&line:102)]->[modules]->[SnapShotModule]->[test_root]->[Test_Gen_Obj_9]->[data]
+
+

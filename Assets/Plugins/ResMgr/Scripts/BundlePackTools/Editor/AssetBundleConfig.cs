@@ -19,9 +19,6 @@ public class AssetBundleConfig : ScriptableObject
     [Tooltip("启用AB加密（头部插入随机数据）")]
     public bool enableEncryption = false;
     
-    [Tooltip("拷贝后压缩BundlePackTools为zip")]
-    public bool compressResToZip = false;
-    
     [Header("Build Player Settings")]
     public string buildOutputPath = "Build";
     public string buildVersion = "1.0.0";

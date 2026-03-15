@@ -39,6 +39,15 @@ public class UIManager : MonoBehaviour
     }
 
     /// <summary>
+    /// 获取面板上的指定组件
+    /// </summary>
+    public T GetPanelComponent<T>(PanelType type) where T : Component
+    {
+        GameObject panel = GetPanel(type);
+        return panel != null ? panel.GetComponent<T>() : null;
+    }
+
+    /// <summary>
     /// 内部帮助方法：将枚举映射到 GameObject
     /// </summary>
     private GameObject GetPanel(PanelType type)

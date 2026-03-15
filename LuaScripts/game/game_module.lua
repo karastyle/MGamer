@@ -25,6 +25,7 @@ function GameModule.new()
     self.interactComponent = self.go:GetComponent(typeof(CS.Test.TestXluaInteract))
     self.clickInfo = {}
     self.events = {}
+    self.cache = {}
 
     return self
 end
@@ -71,7 +72,7 @@ function GameModule:Update(deltaTime)
     if self.timer >= 1.0 then
         self.timer = 0
         self.counter = self.counter + 1
-        Debug.Log(string.format("[GameModule] 运行中... 计数: %d", self.counter))
+        --Debug.Log(string.format("[GameModule] 运行中... 计数: %d", self.counter))
 
         self:test1()
         self:test2()
@@ -90,6 +91,8 @@ function GameModule:test1()
         end
         self.interactComponent:Bind(luaCallback)
     end
+    local a = {index = 1}
+    table.insert(self.cache, a)
 end
 
 function GameModule:test2()

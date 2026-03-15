@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: AssetBundleConfig
   m_EditorClassIdentifier: 
   outputPath: D:/UnityProject/MGame/AssetBundles
-  version: 1.0.74
+  version: 1.0.0
   disableWriteTypeTree: 0
   collectorGroups:
   - groupName: UI
-    active: 1
+    active: 0
     collectors:
     - collectorPath: {fileID: 102900000, guid: 402e45bce882f3d4e8938a5420beb279, type: 3}
       packRule: 1
@@ -28,14 +28,14 @@ MonoBehaviour:
       collectType: 3
       assetTag: 1
   - groupName: Lua
-    active: 1
+    active: 0
     collectors:
     - collectorPath: {fileID: 102900000, guid: 74675ff95b9bed040a917dd2c9b17457, type: 3}
       packRule: 2
       collectType: 0
       assetTag: 1
   - groupName: Scene
-    active: 1
+    active: 0
     collectors:
     - collectorPath: {fileID: 102900000, guid: dfc75a96df94dcd4ab14c75789dc9064, type: 3}
       packRule: 0
@@ -46,14 +46,14 @@ MonoBehaviour:
       collectType: 4
       assetTag: 0
   - groupName: Material
-    active: 1
+    active: 0
     collectors:
     - collectorPath: {fileID: 102900000, guid: 729697e66b33f684e9968245bab21d2c, type: 3}
       packRule: 1
       collectType: 0
       assetTag: 1
   - groupName: Lightmap
-    active: 1
+    active: 0
     collectors:
     - collectorPath: {fileID: 102900000, guid: a45491a0045cd5c4e8b052798fb26596, type: 3}
       packRule: 2
@@ -64,18 +64,29 @@ MonoBehaviour:
       collectType: 0
       assetTag: 0
   - groupName: InstancedData
-    active: 1
+    active: 0
     collectors:
     - collectorPath: {fileID: 102900000, guid: fd384b932d93ba14a90532d6b83ce6b6, type: 3}
       packRule: 2
       collectType: 0
       assetTag: 0
+  - groupName: Model
+    active: 1
+    collectors:
+    - collectorPath: {fileID: 102900000, guid: 22d1a40ab484d13459810dba40d96f7a, type: 3}
+      packRule: 2
+      collectType: 1
+      assetTag: 1
+    - collectorPath: {fileID: 102900000, guid: 99397a22b2f34b2489022951b4f61cdc, type: 3}
+      packRule: 2
+      collectType: 0
+      assetTag: 1
   shaderVariantPath: {fileID: 20000000, guid: 6b430de2afbeacb4786aa5ee16036c64, type: 2}
   enableEncryption: 0
   compressResToZip: 1
   buildOutputPath: D:/UnityProject/MGame/Build
-  buildVersion: 1.0.0
-  copyAbVersion: 1.0.69
+  buildVersion: 1.0.1
+  copyAbVersion: 1.0.0
   buildInCopyOption: 1
   buildScenes:
   - {fileID: 102900000, guid: 68c82bf5df24bc0429da27456427d52f, type: 3}

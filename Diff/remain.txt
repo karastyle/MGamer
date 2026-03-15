@@ -1,0 +1,333 @@
+type:LUA_TTABLE
+ └─object
+   ├─ref1 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.DiffResult
+   ├─ref2 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.DiffResult.[table:metatable].__index[line:-1@file:[C]].[ups:table:]
+   └─ref3 url:[registry].2[_G].CS.[userdata:0000027ECE1151C8]
+ └─object
+   ├─ref1 url:[registry].2[_G].SnapShotTestRoot.[key]
+   └─ref2 url:[registry].2[_G].SnapShotTestRoot.Test_Gen_Obj_17.name
+ └─object
+   ├─ref1 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.[key]
+   ├─ref2 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.[key]
+   ├─ref3 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.[key]
+   ├─ref4 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.[key]
+   ├─ref5 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.[key]
+   ├─ref6 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.[key]
+   ├─ref7 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.[key]
+   ├─ref8 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.[key]
+   ├─ref9 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.[key]
+   ├─ref10 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.[key]
+   ├─ref11 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.[key]
+   └─ref12 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.[key]
+ └─object
+   ├─ref1 url:[registry].2[_G].SnapShotTestRoot.[key]
+   └─ref2 url:[registry].2[_G].SnapShotTestRoot.Test_Gen_Obj_10.name
+ └─object
+   ├─ref1 url:[registry].2[_G].SnapShotTestRoot.[key]
+   └─ref2 url:[registry].2[_G].SnapShotTestRoot.Test_Gen_Obj_12.name
+ └─object
+   └─ref1 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.DiffResult.[table:metatable].__index[line:-1@file:[C]].[ups:table:]
+ └─object
+   └─ref1 url:[registry].2[_G].SnapShotTestRoot.Test_Gen_Obj_6.data
+ └─object
+   └─ref1 url:[registry].2[_G].SnapShotTestRoot.Test_Gen_Obj_16
+ └─object
+   ├─ref1 url:[registry].LuaIndexs.[userdata:0000027ECE1152C8][line:-1@file:[C]]
+   └─ref2 url:[registry].MikuLuaProfiler.SnapShotParser.__index[line:-1@file:[C]]
+ └─object
+   └─ref1 url:[registry].2[_G].SnapShotTestRoot.Test_Gen_Obj_12.data
+ └─object
+   ├─ref1 url:[registry].2[_G].SnapShotTestRoot.[key]
+   └─ref2 url:[registry].2[_G].SnapShotTestRoot.Test_Gen_Obj_13.name
+ └─object
+   ├─ref1 url:[registry].22.__newindex[line:-1@file:[C]].[ups:table:].[key]
+   ├─ref2 url:[registry].22.__index[line:-1@file:[C]].[ups:table:].[key]
+   ├─ref3 url:[registry].22.__newindex[line:-1@file:[C]].[ups:table:].[key]
+   ├─ref4 url:[registry].22.__index[line:-1@file:[C]].[ups:table:].[key]
+   ├─ref5 url:[registry].22.__newindex[line:-1@file:[C]].[ups:table:].[key]
+   ├─ref6 url:[registry].22.__index[line:-1@file:[C]].[ups:table:].[key]
+   ├─ref7 url:[registry].22.__newindex[line:-1@file:[C]].[ups:table:].[key]
+   └─ref8 url:[registry].22.__index[line:-1@file:[C]].[ups:table:].[key]
+ └─object
+   ├─ref1 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.DiffResult.[table:metatable].__index[line:-1@file:[C]]
+   └─ref2 url:[registry].LuaClassIndexs.[userdata:0000027ECE1151C8][line:-1@file:[C]]
+ └─object
+   ├─ref1 url:[registry].2[_G].SnapShotTestRoot.[key]
+   └─ref2 url:[registry].2[_G].SnapShotTestRoot.Test_Gen_Obj_16.name
+ └─object
+   ├─ref1 url:[registry].LuaClassNewIndexs.[userdata:0000027ECE115608][line:-1@file:[C]]
+   └─ref2 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.Relation.[table:metatable].__newindex[line:-1@file:[C]]
+ └─object
+   └─ref1 url:[registry].2[_G].SnapShotTestRoot.Test_Gen_Obj_16.data
+ └─object
+   ├─ref1 url:[registry].2[_G].SnapShotTestRoot.[key]
+   └─ref2 url:[registry].2[_G].SnapShotTestRoot.Test_Gen_Obj_11.name
+ └─object
+   └─ref1 url:[registry].2[_G].SnapShotTestRoot.Test_Gen_Obj_8.desc
+ └─object
+   └─ref1 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.[table:metatable].__index[line:-1@file:[C]].[ups:table:].SnapshotData[line:-1@file:[C]]
+ └─object
+   └─ref1 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.DiffResult.[table:metatable].__call[line:-1@file:[C]]
+ └─object
+   └─ref1 url:[registry].2[_G].SnapShotTestRoot.Test_Gen_Obj_8.data
+ └─object
+   ├─ref1 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.[table:metatable].__newindex[line:-1@file:[C]].[ups:table:].[key]
+   ├─ref2 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.[table:metatable].__index[line:-1@file:[C]].[ups:table:].[key]
+   ├─ref3 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.[table:metatable].__newindex[line:-1@file:[C]].[ups:table:].[key]
+   ├─ref4 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.[table:metatable].__index[line:-1@file:[C]].[ups:table:].[key]
+   ├─ref5 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.[table:metatable].__newindex[line:-1@file:[C]].[ups:table:].[key]
+   └─ref6 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.[table:metatable].__index[line:-1@file:[C]].[ups:table:].[key]
+ └─object
+   └─ref1 url:[registry].2[_G].SnapShotTestRoot.Test_Gen_Obj_17.desc
+ └─object
+   └─ref1 url:[registry].23.__tostring[line:-1@file:[C]]
+ └─object
+   ├─ref1 url:[registry].22
+   └─ref2 url:[registry].MikuLuaProfiler.SnapShotParser+Relation
+ └─object
+   └─ref1 url:[registry].2[_G].SnapShotTestRoot.Test_Gen_Obj_13.desc
+ └─object
+   ├─ref1 url:[registry].23
+   └─ref2 url:[registry].MikuLuaProfiler.SnapShotParser+DiffResult
+ └─object
+   ├─ref1 url:[registry].22.__index[line:-1@file:[C]].[ups:table:]
+   └─ref2 url:[registry].22.__index[line:-1@file:[C]].[ups:table:]
+ └─object
+   └─ref1 url:[registry].22.__newindex[line:-1@file:[C]].[ups:table:]
+ └─object
+   └─ref1 url:[registry].2[_G].SnapShotTestRoot.Test_Gen_Obj_9
+ └─object
+   ├─ref1 url:[registry].MikuLuaProfiler.SnapShotParser.__index[line:-1@file:[C]].[ups:table:]
+   └─ref2 url:[registry].MikuLuaProfiler.SnapShotParser.__index[line:-1@file:[C]].[ups:table:]
+ └─object
+   └─ref1 url:[registry].MikuLuaProfiler.SnapShotParser.__tostring[line:-1@file:[C]]
+ └─object
+   └─ref1 url:[registry].2[_G].SnapShotTestRoot.Test_Gen_Obj_7.desc
+ └─object
+   ├─ref1 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.Relation.UnderlyingSystemType
+   └─ref2 url:[registry].3.16
+ └─object
+   └─ref1 url:[registry].2[_G].SnapShotTestRoot.Test_Gen_Obj_7.data
+ └─object
+   ├─ref1 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.DiffResult.UnderlyingSystemType
+   └─ref2 url:[registry].3.17
+ └─object
+   └─ref1 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.[table:metatable].__newindex[line:-1@file:[C]].[ups:table:].SnapshotData[line:-1@file:[C]]
+ └─object
+   ├─ref1 url:[registry].22.__name
+   └─ref2 url:[registry].[key]
+ └─object
+   └─ref1 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.Relation.[table:metatable].__index[line:-1@file:[C]].[ups:table:]
+ └─object
+   └─ref1 url:[registry].MikuLuaProfiler.SnapShotParser.__gc[line:-1@file:[C]]
+ └─object
+   ├─ref1 url:[registry].MikuLuaProfiler.SnapShotParser
+   └─ref2 url:[registry].24
+ └─object
+   ├─ref1 url:[registry].[key]
+   └─ref2 url:[registry].MikuLuaProfiler.SnapShotParser.__name
+ └─object
+   └─ref1 url:[registry].22.__gc[line:-1@file:[C]]
+ └─object
+   └─ref1 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.[table:metatable].__index[line:-1@file:[C]].[ups:table:].SnapshotDiffData[line:-1@file:[C]]
+ └─object
+   └─ref1 url:[registry].22.__tostring[line:-1@file:[C]]
+ └─object
+   ├─ref1 url:[registry].23.__name
+   └─ref2 url:[registry].[key]
+ └─object
+   └─ref1 url:[registry].2[_G].SnapShotTestRoot.Test_Gen_Obj_13
+ └─object
+   └─ref1 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.[table:metatable].__newindex[line:-1@file:[C]].[ups:table:].SnapshotDiffData[line:-1@file:[C]]
+ └─object
+   └─ref1 url:[registry].2[_G].CS.MikuLuaProfiler
+ └─object
+   ├─ref1 url:[registry].23.__index[line:-1@file:[C]].[ups:table:]
+   └─ref2 url:[registry].23.__index[line:-1@file:[C]].[ups:table:]
+ └─object
+   └─ref1 url:[registry].23.__index[line:-1@file:[C]].[ups:table:].Add[line:-1@file:[C]]
+ └─object
+   └─ref1 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.[table:metatable].__newindex[line:-1@file:[C]].[ups:table:]
+ └─object
+   ├─ref1 url:[registry].2[_G].SnapShotTestRoot.[key]
+   └─ref2 url:[registry].2[_G].SnapShotTestRoot.Test_Gen_Obj_6.name
+ └─object
+   └─ref1 url:[registry].2[_G].SnapShotTestRoot.Test_Gen_Obj_14
+ └─object
+   └─ref1 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.Parse[line:-1@file:[C]]
+ └─object
+   ├─ref1 url:[registry].2[_G].SnapShotTestRoot.[key]
+   └─ref2 url:[registry].2[_G].SnapShotTestRoot.Test_Gen_Obj_7.name
+ └─object
+   └─ref1 url:[registry].2[_G].SnapShotTestRoot.Test_Gen_Obj_17.data
+ └─object
+   └─ref1 url:[registry].2[_G].SnapShotTestRoot.Test_Gen_Obj_17
+ └─object
+   └─ref1 url:[registry].2[_G].SnapShotTestRoot.Test_Gen_Obj_16.desc
+ └─object
+   └─ref1 url:[registry].22.__index[line:-1@file:[C]].[ups:table:].isNull[line:-1@file:[C]]
+ └─object
+   └─ref1 url:[registry].2[_G].SnapShotTestRoot.Test_Gen_Obj_7
+ └─object
+   └─ref1 url:[registry].23.__newindex[line:-1@file:[C]].[ups:table:].Add[line:-1@file:[C]]
+ └─object
+   ├─ref1 url:[registry].LuaClassNewIndexs.[userdata:0000027ECE1152C8][line:-1@file:[C]]
+   └─ref2 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.[table:metatable].__newindex[line:-1@file:[C]]
+ └─object
+   └─ref1 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.Relation.[table:metatable].__newindex[line:-1@file:[C]].[ups:table:]
+ └─object
+   └─ref1 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.[table:metatable].__call[line:-1@file:[C]]
+ └─object
+   └─ref1 url:[registry].2[_G].SnapShotTestRoot.Test_Gen_Obj_15
+ └─object
+   └─ref1 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.CreateLuaObjectItem[line:-1@file:[C]]
+ └─object
+   └─ref1 url:[registry].2[_G].SnapShotTestRoot.Test_Gen_Obj_12
+ └─object
+   └─ref1 url:[registry].2[_G].SnapShotTestRoot.Test_Gen_Obj_15.desc
+ └─object
+   └─ref1 url:[registry].22.__newindex[line:-1@file:[C]].[ups:table:].isNull[line:-1@file:[C]]
+ └─object
+   └─ref1 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.GetReport[line:-1@file:[C]]
+ └─object
+   ├─ref1 url:[registry].LuaNewIndexs.[userdata:0000027ECE115608][line:-1@file:[C]]
+   └─ref2 url:[registry].22.__newindex[line:-1@file:[C]]
+ └─object
+   └─ref1 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.ParseInternal[line:-1@file:[C]]
+ └─object
+   └─ref1 url:[registry].2[_G].SnapShotTestRoot.Test_Gen_Obj_11.desc
+ └─object
+   └─ref1 url:[registry].23.__gc[line:-1@file:[C]]
+ └─object
+   ├─ref1 url:[registry].23.__newindex[line:-1@file:[C]].[ups:table:].[key]
+   ├─ref2 url:[registry].23.__index[line:-1@file:[C]].[ups:table:].[key]
+   ├─ref3 url:[registry].23.__newindex[line:-1@file:[C]].[ups:table:].[key]
+   └─ref4 url:[registry].23.__index[line:-1@file:[C]].[ups:table:].[key]
+ └─object
+   └─ref1 url:[registry].2[_G].SnapShotTestRoot.Test_Gen_Obj_6.desc
+ └─object
+   └─ref1 url:[registry].MikuLuaProfiler.SnapShotParser.__newindex[line:-1@file:[C]].[ups:table:]
+ └─object
+   ├─ref1 url:[registry].LuaIndexs.[userdata:0000027ECE115608][line:-1@file:[C]]
+   └─ref2 url:[registry].22.__index[line:-1@file:[C]]
+ └─object
+   └─ref1 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.[table:metatable].__newindex[line:-1@file:[C]].[ups:table:].SnapshotStaticData[line:-1@file:[C]]
+ └─object
+   └─ref1 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.Relation.[table:metatable]
+ └─object
+   └─ref1 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.DiffResult.[table:metatable].__newindex[line:-1@file:[C]].[ups:table:]
+ └─object
+   ├─ref1 url:[registry].2[_G].SnapShotTestRoot.[key]
+   └─ref2 url:[registry].2[_G].SnapShotTestRoot.Test_Gen_Obj_15.name
+ └─object
+   └─ref1 url:[registry].2[_G].SnapShotTestRoot.Test_Gen_Obj_6
+ └─object
+   └─ref1 url:[registry].2[_G].SnapShotTestRoot.Test_Gen_Obj_10.desc
+ └─object
+   └─ref1 url:[registry].22.__newindex[line:-1@file:[C]].[ups:table:].identity[line:-1@file:[C]]
+ └─object
+   └─ref1 url:[registry].2[_G].SnapShotTestRoot.Test_Gen_Obj_12.desc
+ └─object
+   ├─ref1 url:[registry].LuaClassIndexs.[userdata:0000027ECE1152C8][line:-1@file:[C]]
+   └─ref2 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.[table:metatable].__index[line:-1@file:[C]]
+ └─object
+   ├─ref1 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.UnderlyingSystemType
+   └─ref2 url:[registry].3.15
+ └─object
+   └─ref1 url:[registry].2[_G].SnapShotTestRoot.Test_Gen_Obj_10.data
+ └─object
+   └─ref1 url:[registry].2[_G].SnapShotTestRoot.Test_Gen_Obj_9.data
+ └─object
+   └─ref1 url:[registry].2[_G].SnapShotTestRoot.Test_Gen_Obj_11.data
+ └─object
+   └─ref1 url:[registry].22.__index[line:-1@file:[C]].[ups:table:].parentAddr[line:-1@file:[C]]
+ └─object
+   └─ref1 url:[registry].22.__index[line:-1@file:[C]].[ups:table:].key[line:-1@file:[C]]
+ └─object
+   ├─ref1 url:[registry].LuaNewIndexs.[userdata:0000027ECE1151C8][line:-1@file:[C]]
+   └─ref2 url:[registry].23.__newindex[line:-1@file:[C]]
+ └─object
+   └─ref1 url:[registry].22.__newindex[line:-1@file:[C]].[ups:table:].parentAddr[line:-1@file:[C]]
+ └─object
+   ├─ref1 url:[registry].LuaClassNewIndexs.[userdata:0000027ECE1151C8][line:-1@file:[C]]
+   └─ref2 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.DiffResult.[table:metatable].__newindex[line:-1@file:[C]]
+ └─object
+   ├─ref1 url:[registry].2[_G].SnapShotTestRoot.[key]
+   └─ref2 url:[registry].2[_G].SnapShotTestRoot.Test_Gen_Obj_14.name
+ └─object
+   └─ref1 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.DiffResult.[table:metatable]
+ └─object
+   └─ref1 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.[table:metatable]
+ └─object
+   └─ref1 url:[registry].2[_G].SnapShotTestRoot.Test_Gen_Obj_14.data
+ └─object
+   └─ref1 url:[registry].2[_G].SnapShotTestRoot.Test_Gen_Obj_8
+ └─object
+   └─ref1 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.ParseStatic[line:-1@file:[C]]
+ └─object
+   ├─ref1 url:[registry].LuaIndexs.[userdata:0000027ECE1151C8][line:-1@file:[C]]
+   └─ref2 url:[registry].23.__index[line:-1@file:[C]]
+ └─object
+   └─ref1 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.SearchVariableReport[line:-1@file:[C]]
+ └─object
+   └─ref1 url:[registry].2[_G].SnapShotTestRoot.Test_Gen_Obj_11
+ └─object
+   ├─ref1 url:[registry].2[_G].SnapShotTestRoot.[key]
+   └─ref2 url:[registry].2[_G].SnapShotTestRoot.Test_Gen_Obj_9.name
+ └─object
+   └─ref1 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.[table:metatable].__index[line:-1@file:[C]].[ups:table:]
+ └─object
+   └─ref1 url:[registry].2[_G].CS.MikuLuaProfiler.[key]
+ └─object
+   ├─ref1 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.Relation
+   ├─ref2 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.Relation.[table:metatable].__index[line:-1@file:[C]].[ups:table:]
+   └─ref3 url:[registry].2[_G].CS.[userdata:0000027ECE115608]
+ └─object
+   ├─ref1 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.Relation.[table:metatable].__index[line:-1@file:[C]]
+   └─ref2 url:[registry].LuaClassIndexs.[userdata:0000027ECE115608][line:-1@file:[C]]
+ └─object
+   └─ref1 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.Relation.[table:metatable].__call[line:-1@file:[C]]
+ └─object
+   └─ref1 url:[registry].2[_G].SnapShotTestRoot.Test_Gen_Obj_13.data
+ └─object
+   └─ref1 url:[registry].2[_G].SnapShotTestRoot.Test_Gen_Obj_10
+ └─object
+   └─ref1 url:[registry].23.__newindex[line:-1@file:[C]].[ups:table:].Remain[line:-1@file:[C]]
+ └─object
+   └─ref1 url:[registry].2[_G].SnapShotTestRoot.Test_Gen_Obj_9.desc
+ └─object
+   └─ref1 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.ParseDiff[line:-1@file:[C]]
+ └─object
+   └─ref1 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.GetTop100Report[line:-1@file:[C]]
+ └─object
+   └─ref1 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.CalculateDiff[line:-1@file:[C]]
+ └─object
+   └─ref1 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.GetFullPath[line:-1@file:[C]]
+ └─object
+   └─ref1 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.[table:metatable].__index[line:-1@file:[C]].[ups:table:].SnapshotStaticData[line:-1@file:[C]]
+ └─object
+   └─ref1 url:[registry].22.__newindex[line:-1@file:[C]].[ups:table:].key[line:-1@file:[C]]
+ └─object
+   ├─ref1 url:[registry].LuaNewIndexs.[userdata:0000027ECE1152C8][line:-1@file:[C]]
+   └─ref2 url:[registry].MikuLuaProfiler.SnapShotParser.__newindex[line:-1@file:[C]]
+ └─object
+   ├─ref1 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser.[table:metatable].__index[line:-1@file:[C]].[ups:table:]
+   ├─ref2 url:[registry].2[_G].CS.[userdata:0000027ECE1152C8]
+   └─ref3 url:[registry].2[_G].CS.MikuLuaProfiler.SnapShotParser
+ └─object
+   ├─ref1 url:[registry].2[_G].SnapShotTestRoot.[key]
+   └─ref2 url:[registry].2[_G].SnapShotTestRoot.Test_Gen_Obj_8.name
+ └─object
+   └─ref1 url:[registry].2[_G].SnapShotTestRoot.Test_Gen_Obj_15.data
+ └─object
+   └─ref1 url:[registry].10.__index[line:-1@file:[C]].[ups:table:].GetComponentIndex[line:-1@file:[C]].[ups:function:][line:-1@file:[C]]
+ └─object
+   └─ref1 url:[registry].2[_G].SnapShotTestRoot.Test_Gen_Obj_14.desc
+ └─object
+   └─ref1 url:[registry].23.__index[line:-1@file:[C]].[ups:table:].Remain[line:-1@file:[C]]
+ └─object
+   └─ref1 url:[registry].23.__newindex[line:-1@file:[C]].[ups:table:]
+ └─object
+   └─ref1 url:[registry].22.__index[line:-1@file:[C]].[ups:table:].identity[line:-1@file:[C]]
+
+

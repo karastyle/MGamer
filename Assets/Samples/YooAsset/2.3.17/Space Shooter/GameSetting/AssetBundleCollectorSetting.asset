@@ -209,19 +209,11 @@ MonoBehaviour:
       AssetTags: 
       ActiveRuleName: EnableGroup
       Collectors:
-      - CollectPath: Assets/BigWorldDemo/Scenes
-        CollectorGUID: dfc75a96df94dcd4ab14c75789dc9064
+      - CollectPath: Assets/Plugins/Test
+        CollectorGUID: c4579f1bbd4ef7f44ad5106c1226f2a1
         CollectorType: 0
         AddressRuleName: AddressByFileName
         PackRuleName: PackSeparately
-        FilterRuleName: CollectScene
-        AssetTags: 
-        UserData: 
-      - CollectPath: Assets/BigWorldDemo/BWShaderVariants.shadervariants
-        CollectorGUID: 6b430de2afbeacb4786aa5ee16036c64
-        CollectorType: 0
-        AddressRuleName: AddressByFileName
-        PackRuleName: PackDirectory
-        FilterRuleName: CollectShaderVariants
+        FilterRuleName: CollectPrefab
         AssetTags: 
         UserData: 

@@ -39,7 +39,7 @@ public class TestLoadScene
 
         // 异步加载附加场景
         yield return new WaitForSeconds(0.2f);
-        SceneHandle cachedHandle;
+        YooAsset.SceneHandle cachedHandle;
         {
             cachedHandle = package.LoadSceneSync("scene_c", LoadSceneMode.Additive);
             yield return cachedHandle;

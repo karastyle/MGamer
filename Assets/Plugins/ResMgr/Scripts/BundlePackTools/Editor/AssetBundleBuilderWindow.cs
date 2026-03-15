@@ -6,6 +6,7 @@ using UnityEngine;
 using System.IO;
 using System.Linq;
 using System.IO.Compression;
+using EasyTools;
 
 public class AssetBundleBuilderWindow : EditorWindow
 {
@@ -18,6 +19,17 @@ public class AssetBundleBuilderWindow : EditorWindow
     private int selectedGroupIndex = -1;
     private string cdnPath = "";
 
+    // 在字段区新增
+    private List<string> connectedDevices = new List<string>();
+    private string[] deviceDisplayNames = new string[0];
+    private int selectedDeviceIndex = -1;
+    private bool autoInstallAfterBuild = false;
+    
+    // 新增：config 下拉列表
+    private AssetBundleConfig[] allConfigs = new AssetBundleConfig[0];
+    private string[] allConfigNames = new string[0];
+    private int selectedConfigIndex = -1;
+
     [MenuItem("Tools/AssetBundle Builder")]
     static void ShowWindow()
     {
@@ -28,6 +40,7 @@ public class AssetBundleBuilderWindow : EditorWindow
     void OnEnable()
     {
         LoadConfig();
+        RefreshConfigList();
         cdnPath = EditorPrefs.GetString("AssetBundleBuilder_CDNPath", "");
     }
 
@@ -36,10 +49,65 @@ public class AssetBundleBuilderWindow : EditorWindow
         EditorPrefs.SetString("AssetBundleBuilder_CDNPath", cdnPath);
     }
 
+    void RefreshConfigList()
+    {
+        allConfigs = AssetDatabase.FindAssets("t:AssetBundleConfig")
+            .Select(guid => AssetDatabase.LoadAssetAtPath<AssetBundleConfig>(AssetDatabase.GUIDToAssetPath(guid)))
+            .Where(c => c != null)
+            .ToArray();
+
+        allConfigNames = allConfigs.Select(c => AssetDatabase.GetAssetPath(c)).ToArray();
+
+        // 同步选中项
+        selectedConfigIndex = -1;
+        if (config != null)
+        {
+            for (int i = 0; i < allConfigs.Length; i++)
+            {
+                if (allConfigs[i] == config)
+                {
+                    selectedConfigIndex = i;
+                    break;
+                }
+            }
+        }
+    }
+
     void OnGUI()
     {
+        DrawConfigSelector();
         DrawToolbar();
         DrawMainLayout();
+    }
+
+    void DrawConfigSelector()
+    {
+        EditorGUILayout.BeginHorizontal(EditorStyles.helpBox);
+
+        EditorGUILayout.LabelField("Config", GUILayout.Width(45));
+
+        if (allConfigs.Length == 0)
+        {
+            EditorGUILayout.LabelField("No AssetBundleConfig found", EditorStyles.miniLabel);
+        }
+        else
+        {
+            int newIndex = EditorGUILayout.Popup(selectedConfigIndex, allConfigNames);
+            if (newIndex != selectedConfigIndex && newIndex >= 0 && newIndex < allConfigs.Length)
+            {
+                selectedConfigIndex = newIndex;
+                config = allConfigs[selectedConfigIndex];
+                configPath = allConfigNames[selectedConfigIndex];
+                selectedGroupIndex = -1;
+            }
+        }
+
+        if (GUILayout.Button("↺", GUILayout.Width(24)))
+        {
+            RefreshConfigList();
+        }
+
+        EditorGUILayout.EndHorizontal();
     }
 
     void DrawToolbar()
@@ -282,11 +350,6 @@ public class AssetBundleBuilderWindow : EditorWindow
         EditorGUILayout.EndHorizontal();
         
         EditorGUILayout.BeginHorizontal();
-        EditorGUILayout.LabelField("Compress Res to Zip", GUILayout.Width(150)); 
-        config.compressResToZip = EditorGUILayout.Toggle(config.compressResToZip);
-        EditorGUILayout.EndHorizontal();
-        
-        EditorGUILayout.BeginHorizontal();
         EditorGUILayout.LabelField("Platform", GUILayout.Width(80));
         selectedTarget = (BuildTarget)EditorGUILayout.EnumPopup(selectedTarget);
         EditorGUILayout.EndHorizontal();
@@ -322,15 +385,10 @@ public class AssetBundleBuilderWindow : EditorWindow
         
         EditorGUILayout.BeginHorizontal();
         
-        if (GUILayout.Button("Copy All to StreamingAssets", GUILayout.Height(30)))
+        if (GUILayout.Button("Copy Buildin to BundleCache(编辑器跑ab）", GUILayout.Height(30)))
         {
-            CopyAllToStreamingAssets();
-        }
-        
-        if (GUILayout.Button("Copy Buildin to StreamingAssets", GUILayout.Height(30)))
-        {
-            CopyBuildinToStreamingAssets();
-        }
+            CopyAbToBundleCache(config.version, false);
+        }  
         
         EditorGUILayout.EndHorizontal();
         
@@ -369,6 +427,35 @@ public class AssetBundleBuilderWindow : EditorWindow
 
         EditorGUILayout.Space(5);
 
+        
+        // DrawBuildSection() 里，Scene List 上方插入
+
+        EditorGUILayout.Space(5);
+        EditorGUILayout.LabelField("Android 设备", EditorStyles.boldLabel);
+
+        EditorGUILayout.BeginHorizontal();
+        if (deviceDisplayNames.Length == 0)
+        {
+            EditorGUILayout.LabelField("无已连接设备", EditorStyles.miniLabel);
+        }
+        else
+        {
+            selectedDeviceIndex = EditorGUILayout.Popup("选择设备", selectedDeviceIndex, deviceDisplayNames);
+        }
+
+        if (GUILayout.Button("刷新", GUILayout.Width(50)))
+        {
+            RefreshDevices();
+        }
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.BeginHorizontal();
+        EditorGUILayout.LabelField("打包后自动安装", GUILayout.Width(120));
+        autoInstallAfterBuild = EditorGUILayout.Toggle(autoInstallAfterBuild);
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.Space(5);
+        
         EditorGUILayout.BeginHorizontal();
         EditorGUILayout.LabelField("Scene List", EditorStyles.boldLabel);
         if (GUILayout.Button("Add Scene", GUILayout.Width(80), GUILayout.Height(18)))
@@ -403,12 +490,40 @@ public class AssetBundleBuilderWindow : EditorWindow
         
         if (GUILayout.Button("Build Player", GUILayout.Height(35)))
         {
-            BuildPlayer();
+            bool buildSucceeded = BuildPlayer();
+
+            if (buildSucceeded && autoInstallAfterBuild && selectedTarget == BuildTarget.Android)
+            {
+                string platformName = GetPlatformName(selectedTarget);
+                string outputPath = Path.Combine(config.buildOutputPath, platformName);
+                string apkPath = Path.Combine(outputPath, PlayerSettings.productName + ".apk");
+
+                string serial = (selectedDeviceIndex >= 0 && selectedDeviceIndex < connectedDevices.Count)
+                    ? connectedDevices[selectedDeviceIndex].Split('\t')[0]
+                    : "";
+
+                // packageName 和 activityName 按你项目的实际值填，或从 PlayerSettings 读
+                string packageName = PlayerSettings.applicationIdentifier;
+                string activityName = "com.unity3d.player.UnityPlayerActivity";
+
+                BuildPlayerHelper.InstallAndLaunch(apkPath, serial, packageName);
+            }
         }
         
         EditorGUILayout.EndVertical();
     }
 
+    // 新增方法 RefreshDevices()
+    void RefreshDevices()
+    {
+        connectedDevices = BuildPlayerHelper.GetConnectedDevices();
+        deviceDisplayNames = connectedDevices.Count > 0
+            ? connectedDevices.ToArray()
+            : new string[0];
+        selectedDeviceIndex = connectedDevices.Count > 0 ? 0 : -1;
+        Debug.Log($"[ADB] 找到 {connectedDevices.Count} 台设备");
+    }
+    
     void CreateNewConfig()
     {
         config = CreateInstance<AssetBundleConfig>();
@@ -416,6 +531,7 @@ public class AssetBundleBuilderWindow : EditorWindow
         AssetDatabase.SaveAssets();
         EditorUtility.SetDirty(config);
         selectedGroupIndex = -1;
+        RefreshConfigList();
     }
 
     void LoadConfig()
@@ -441,6 +557,7 @@ public class AssetBundleBuilderWindow : EditorWindow
             config = AssetDatabase.LoadAssetAtPath<AssetBundleConfig>(path);
             configPath = path;
             selectedGroupIndex = -1;
+            RefreshConfigList();
         }
     }
 
@@ -495,28 +612,6 @@ public class AssetBundleBuilderWindow : EditorWindow
         AssetBundleBuilder.Build(config, selectedTarget);
     }
 
-    void CopyAllToStreamingAssets()
-    {
-        if (config == null)
-        {
-            EditorUtility.DisplayDialog("Error", "Please select or create a config first", "OK");
-            return;
-        }
-
-        CopyAbToStreamingAssets(config.version, false);
-    }
-
-    void CopyBuildinToStreamingAssets()
-    {
-        if (config == null)
-        {
-            EditorUtility.DisplayDialog("Error", "Please select or create a config first", "OK");
-            return;
-        }
-
-        CopyAbToStreamingAssets(config.version, true);
-    }
-
     void CopyAbToStreamingAssets(string abVersion, bool onlyBuildin)
     {
         string platformName = GetPlatformName(selectedTarget);
@@ -532,31 +627,56 @@ public class AssetBundleBuilderWindow : EditorWindow
         try
         {
             if (Directory.Exists(destPath))
-            {
                 Directory.Delete(destPath, true);
-            }
 
             Directory.CreateDirectory(destPath);
 
             if (onlyBuildin)
-            {
                 CopyBuildinBundles(sourcePath, destPath);
-            }
             else
-            {
                 CopyDirectory(sourcePath, destPath);
-            }
 
             AssetDatabase.Refresh();
             
             string copyType = onlyBuildin ? "Buildin" : "All";
             Debug.Log($"{copyType} AssetBundles copied to: {destPath}");
 
-            // ✅ 如果勾选了压缩选项，压缩并删除文件夹
-            if (config.compressResToZip)
-            {
-                CompressAndDeleteBundlePackTools(destPath);
-            }
+            CompressAndDeleteBundlePackTools(destPath);
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError($"Failed to copy AssetBundles: {e.Message}");
+        }
+    }
+    
+    void CopyAbToBundleCache(string abVersion, bool onlyBuildin)
+    {
+        string platformName = GetPlatformName(selectedTarget);
+        string sourcePath = Path.Combine(config.outputPath, platformName, abVersion);
+        string destPath = PathConfig.GetCacheRoot();
+        
+        if (!Directory.Exists(sourcePath))
+        {
+            Debug.LogError($"Source path not found: {sourcePath}");
+            return;
+        }
+
+        try
+        {
+            if (Directory.Exists(destPath))
+                Directory.Delete(destPath, true);
+
+            Directory.CreateDirectory(destPath);
+
+            if (onlyBuildin)
+                CopyBuildinBundles(sourcePath, destPath);
+            else
+                CopyDirectory(sourcePath, destPath);
+
+            AssetDatabase.Refresh();
+            
+            string copyType = onlyBuildin ? "Buildin" : "All";
+            Debug.Log($"{copyType} AssetBundles copied to: {destPath}");
         }
         catch (System.Exception e)
         {
@@ -616,8 +736,6 @@ public class AssetBundleBuilderWindow : EditorWindow
         }
     }
 
-
-    // ✅ 新增：压缩BundlePackTools并删除文件夹
     void CompressAndDeleteBundlePackTools(string bundlePackToolsPath)
     {
         try
@@ -625,26 +743,18 @@ public class AssetBundleBuilderWindow : EditorWindow
             string zipPath = bundlePackToolsPath + ".zip";
         
             if (File.Exists(zipPath))
-            {
                 File.Delete(zipPath);
-            }
 
             ZipFile.CreateFromDirectory(bundlePackToolsPath, zipPath, System.IO.Compression.CompressionLevel.Optimal, false);
-        
             Debug.Log($"BundlePackTools compressed to: {zipPath}");
 
-            // 删除原文件夹
             Directory.Delete(bundlePackToolsPath, true);
         
-            // 删除对应的.meta文件
             string metaPath = bundlePackToolsPath + ".meta";
             if (File.Exists(metaPath))
-            {
                 File.Delete(metaPath);
-            }
         
             Debug.Log($"BundlePackTools folder and meta deleted: {bundlePackToolsPath}");
-        
             AssetDatabase.Refresh();
         }
         catch (System.Exception e)
@@ -656,21 +766,15 @@ public class AssetBundleBuilderWindow : EditorWindow
     void WriteAppConfig(string packageType)
     {
         if (!Directory.Exists(Application.streamingAssetsPath))
-        {
             Directory.CreateDirectory(Application.streamingAssetsPath);
-        }
 
-        AppConfig appConfig = new AppConfig
-        {
-            PackageType = packageType
-        };
+        AppConfig appConfig = new AppConfig { PackageType = packageType };
 
         string json = JsonUtility.ToJson(appConfig, true);
         string configPath = Path.Combine(Application.streamingAssetsPath, "AppConfig.json");
         File.WriteAllText(configPath, json);
         
         AssetDatabase.Refresh();
-        
         Debug.Log($"AppConfig written: PackageType = {packageType}");
     }
 
@@ -703,31 +807,22 @@ public class AssetBundleBuilderWindow : EditorWindow
             $"Copy AssetBundles to CDN?\n\nFrom: {sourcePath}\nTo: {destPath}", 
             "Copy", "Cancel");
 
-        if (!confirm)
-            return;
+        if (!confirm) return;
 
         try
         {
             if (Directory.Exists(destPath))
-            {
                 Directory.Delete(destPath, true);
-            }
 
             Directory.CreateDirectory(destPath);
-
             CopyDirectory(sourcePath, destPath);
             
             string sourceVersionFile = Path.Combine(sourcePath, "DefaultPackage_Manifest.version");
             string destVersionFile = Path.Combine(rootVersionPath, "DefaultPackage_Manifest.version");
             if (File.Exists(sourceVersionFile))
-            {
                 File.Copy(sourceVersionFile, destVersionFile, true);
-            }
             
-            EditorUtility.DisplayDialog("Success", 
-                $"AssetBundles copied to CDN!\n\nLocation: {destPath}", 
-                "OK");
-            
+            EditorUtility.DisplayDialog("Success", $"AssetBundles copied to CDN!\n\nLocation: {destPath}", "OK");
             Debug.Log($"AssetBundles copied to CDN: {destPath}");
         }
         catch (System.Exception e)
@@ -737,54 +832,44 @@ public class AssetBundleBuilderWindow : EditorWindow
         }
     }
 
-    void BuildPlayer()
+    bool BuildPlayer()
     {
         if (config == null)
         {
             EditorUtility.DisplayDialog("Error", "Please select or create a config first", "OK");
-            return;
+            return false;
         }
 
         SaveConfig();
-        
+
         if (config.buildInCopyOption != BuildInCopyOption.None)
         {
             CopyAbToStreamingAssets(config.copyAbVersion, config.buildInCopyOption == BuildInCopyOption.CopyBuildin);
         }
         else
         {
-            // 清理StreamingAssets中的BundlePackTools
             string destPath = Path.Combine(Application.streamingAssetsPath, "BundlePackTools.zip");
             if (File.Exists(destPath))
             {
                 File.Delete(destPath);
                 string metaPath = destPath + ".meta";
                 if (File.Exists(metaPath))
-                {
                     File.Delete(metaPath);
-                }
                 AssetDatabase.Refresh();
                 Debug.Log("Cleared BundlePackTools from StreamingAssets");
             }
         }
-        
-        string packageType = "Empty";
-        switch (config.buildInCopyOption)
+
+        string packageType = config.buildInCopyOption switch
         {
-            case BuildInCopyOption.None:
-                packageType = "Empty";
-                break;
-            case BuildInCopyOption.CopyAll:
-                packageType = "Full";
-                break;
-            case BuildInCopyOption.CopyBuildin:
-                packageType = "Small";
-                break;
-        }
-        
+            BuildInCopyOption.None => "Empty",
+            BuildInCopyOption.CopyAll => "Full",
+            BuildInCopyOption.CopyBuildin => "Small",
+            _ => "Empty"
+        };
+
         WriteAppConfig(packageType);
-        
-        BuildPlayerHelper.BuildPlayer(config, selectedTarget);
+        return BuildPlayerHelper.BuildPlayer(config, selectedTarget);
     }
 
     string GetPlatformName(BuildTarget target)
@@ -792,14 +877,10 @@ public class AssetBundleBuilderWindow : EditorWindow
         switch (target)
         {
             case BuildTarget.StandaloneWindows:
-            case BuildTarget.StandaloneWindows64:
-                return "PC";
-            case BuildTarget.Android:
-                return "Android";
-            case BuildTarget.iOS:
-                return "iOS";
-            default:
-                return target.ToString();
+            case BuildTarget.StandaloneWindows64: return "PC";
+            case BuildTarget.Android: return "Android";
+            case BuildTarget.iOS: return "iOS";
+            default: return target.ToString();
         }
     }
 
