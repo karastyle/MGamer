@@ -83,7 +83,6 @@ MonoBehaviour:
       assetTag: 1
   shaderVariantPath: {fileID: 20000000, guid: 6b430de2afbeacb4786aa5ee16036c64, type: 2}
   enableEncryption: 0
-  compressResToZip: 1
   buildOutputPath: D:/UnityProject/MGame/Build
   buildVersion: 1.0.1
   copyAbVersion: 1.0.0

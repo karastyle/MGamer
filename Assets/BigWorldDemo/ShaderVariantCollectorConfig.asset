@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: ShaderVariantCollectorConfig
   m_EditorClassIdentifier: 
   assetBundleConfig: {fileID: 11400000, guid: 6bf737a383de446429945ee3c9b5df87, type: 2}
-  savePath: Assets/BigWorldDemo/BWShaderVariants.shadervariants
+  saveFolder: Assets/Plugins/Test
+  saveFileName: MyShaderVariants
   processCapacity: 1000

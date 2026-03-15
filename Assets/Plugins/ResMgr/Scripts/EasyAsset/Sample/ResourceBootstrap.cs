@@ -27,7 +27,7 @@ namespace EasyTools
             yield return InitResource();
         }
 
-        public IEnumerable InitResource()
+        public IEnumerator InitResource()
         {
             // 加载shader变体集合以预热
             yield return WarmupShaders();

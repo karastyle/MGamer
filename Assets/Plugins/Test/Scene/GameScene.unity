@@ -130,8 +130,8 @@ GameObject:
   - component: {fileID: 60964908}
   - component: {fileID: 60964912}
   - component: {fileID: 60964911}
-  - component: {fileID: 60964910}
   - component: {fileID: 60964909}
+  - component: {fileID: 60964913}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -181,27 +181,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!65 &60964910
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 60964907}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &60964911
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -259,6 +238,28 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 60964907}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!64 &60964913
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 60964907}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: faf04d0837d9d4c4e8ec4937285e2327, type: 2}
 --- !u!1 &304294038
 GameObject:
   m_ObjectHideFlags: 0
@@ -563,7 +564,7 @@ Transform:
   m_GameObject: {fileID: 1539012497}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.005, y: 3.431, z: -0.134}
+  m_LocalPosition: {x: -0.005, y: 5, z: -0.134}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -630,7 +631,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7599f844b59dc6e4e9fd29b5dd842e6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp-firstpass::RuntimeMeshCollider
-  meshAssetName: test_mesh2
+  meshAssetName: R4BiankaMd010011Alpha02VC_off
+  fbxAssetName: quiver
+  fbxSubMeshName: quiver
 --- !u!23 &1539012502
 MeshRenderer:
   m_ObjectHideFlags: 0

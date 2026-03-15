@@ -428,6 +428,8 @@ namespace EasyShaderCollector
         private static GameObject CreateSphere(string assetPath, Vector3 position, int index)
         {
             var material = AssetDatabase.LoadAssetAtPath<Material>(assetPath);
+            if (material == null)
+                return null;
             var shader = material.shader;
             if (shader == null)
                 return null;

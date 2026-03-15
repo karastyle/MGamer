@@ -13,19 +13,23 @@ MonoBehaviour:
   m_Name: AssetBundleConfig
   m_EditorClassIdentifier: Assembly-CSharp-Editor-firstpass::AssetBundleConfig
   outputPath: AssetBundles
-  version: 1.0.7
+  version: 1.0.20
   disableWriteTypeTree: 0
   collectorGroups:
   - groupName: Model
     active: 1
     collectors:
-    - collectorPath: {fileID: 102900000, guid: 22d1a40ab484d13459810dba40d96f7a, type: 3}
-      packRule: 1
-      collectType: 1
-      assetTag: 1
     - collectorPath: {fileID: 102900000, guid: 99397a22b2f34b2489022951b4f61cdc, type: 3}
       packRule: 1
       collectType: 0
+      assetTag: 1
+    - collectorPath: {fileID: 102900000, guid: a4ada4ace580dce4a98f80327d2c99b5, type: 3}
+      packRule: 1
+      collectType: 0
+      assetTag: 1
+    - collectorPath: {fileID: 102900000, guid: 22d1a40ab484d13459810dba40d96f7a, type: 3}
+      packRule: 1
+      collectType: 1
       assetTag: 1
   - groupName: Mat
     active: 1
@@ -45,7 +49,7 @@ MonoBehaviour:
   enableEncryption: 0
   buildOutputPath: Build
   buildVersion: 1.0.0
-  copyAbVersion: 1.0.6
+  copyAbVersion: 1.0.11
   buildInCopyOption: 1
   buildScenes:
   - {fileID: 102900000, guid: 6128e22c72ebcb645a1bb9f966004bde, type: 3}

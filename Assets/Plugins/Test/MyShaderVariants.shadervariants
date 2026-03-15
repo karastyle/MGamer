@@ -70,3 +70,19 @@ ShaderVariantCollection:
         passType: 0
       - keywords: _OUTPUT_DEPTH
         passType: 0
+  - first: {fileID: 4800000, guid: 65df88701913c224d95fc554db28381a, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: e7857e9d0c934dc4f83f270f8447b006, type: 3}
+    second:
+      variants:
+      - keywords: _USE_FAST_SRGB_LINEAR_CONVERSION
+        passType: 0
+  - first: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
+    second:
+      variants:
+      - keywords: _CLUSTER_LIGHT_LOOP _LIGHT_LAYERS _MAIN_LIGHT_SHADOWS _REFLECTION_PROBE_ATLAS
+          _REFLECTION_PROBE_BLENDING _REFLECTION_PROBE_BOX_PROJECTION
+        passType: 13

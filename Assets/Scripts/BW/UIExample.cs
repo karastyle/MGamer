@@ -41,7 +41,7 @@ namespace EasyTools
             }
         }
 
-        void EnterScene()
+        public void EnterScene()
         {
             var uiManager = GlobalInitializer.Instance.GetModule<UIManager>();
             if (uiManager == null)

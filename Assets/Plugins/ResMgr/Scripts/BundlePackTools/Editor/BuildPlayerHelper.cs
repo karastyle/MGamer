@@ -22,12 +22,6 @@ public static class BuildPlayerHelper
             Directory.CreateDirectory(outputPath);
         }
 
-        if (EditorUserBuildSettings.activeBuildTarget != target)
-        {
-            Debug.Log($"Switching platform to {target}...");
-            EditorUserBuildSettings.SwitchActiveBuildTarget(BuildPipeline.GetBuildTargetGroup(target), target);
-        }
-        
         string executableName = GetExecutableName(target);
         string fullPath = Path.Combine(outputPath, executableName);
 

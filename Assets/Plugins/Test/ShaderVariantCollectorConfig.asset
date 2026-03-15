@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: ShaderVariantCollectorConfig
   m_EditorClassIdentifier: Assembly-CSharp-Editor-firstpass::EasyShaderCollector.ShaderVariantCollectorConfig
   assetBundleConfig: {fileID: 11400000, guid: 6ace7b56b3123a345adc6897ff12da3c, type: 2}
-  savePath: Assets/MyShaderVariants.shadervariants
+  saveFolder: Assets/Plugins/Test
+  saveFileName: MyShaderVariants
   processCapacity: 1000
